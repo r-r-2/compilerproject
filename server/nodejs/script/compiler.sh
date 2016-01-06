@@ -1,2 +1,2 @@
-cd /home/suraj/Desktop/compilerproject/test
-$1 $2
+cd //home/suraj/Desktop/compilerproject/server/nodejs/$1
+$2 $3
