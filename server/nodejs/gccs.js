@@ -9,6 +9,9 @@ console.log(location_compiler);
 var express=require("express");
 var app=express();
 console.log("Server startting up");
+app.post("/",function(req,res){
+ res.send("Sucess");    
+});
 app.get("/:compiler/:filename",function(req,res){
 	//res.send("got a request"+req.params.compiler+" "+req.params.userId);
         
