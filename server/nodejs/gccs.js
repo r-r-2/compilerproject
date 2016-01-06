@@ -1,4 +1,5 @@
 var fs = require("fs");
+
 var config = JSON.parse(fs.readFileSync("config.json"));
 var host = config.host;
 var port = config.port;
@@ -9,11 +10,20 @@ console.log(location_compiler);
 var express=require("express");
 var app=express();
 console.log("Server startting up");
-app.post("/",function(req,res){
- res.send("Sucess");    
+app.post('/appdata', function (req, res) {
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+
+
+
+console.log("Post"+req.param('email',null));
 });
+
 app.get("/:compiler/:filename",function(req,res){
-	//res.send("got a request"+req.params.compiler+" "+req.params.userId);
+  //res.send("got a request"+req.params.compiler+" "+req.params.userId);
         
     var exec = require('child_process').exec,
     child;
@@ -30,7 +40,7 @@ else
     }
 });});
 app.get("/:filename",function(req,res){
-	//res.send("got a request"+req.params.compiler+" "+req.params.userId);
+  //res.send("got a request"+req.params.compiler+" "+req.params.userId);
         
     var exec = require('child_process').exec,
     child;
