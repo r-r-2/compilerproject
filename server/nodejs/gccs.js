@@ -2,7 +2,7 @@ var fs = require("fs");
 var bodyParser = require('body-parser')
 var express=require("express");
 
-console.log("hai plsss work yippeeee");
+
 
 
 var config = JSON.parse(fs.readFileSync("config.json"));
@@ -10,7 +10,7 @@ var host = config.host;
 var port = config.port;
 var location_compiler = config.location_compiler;
 
-console.log("hai plsss work yippeeee");
+
 
 var app=express();
 //app.use( bodyParser.json() );

@@ -2,7 +2,7 @@ var fs = require("fs");
 var bodyParser = require('body-parser')
 var express=require("express");
 
-console.log("hai plsss work yippeeee");
+
 
 
 var config = JSON.parse(fs.readFileSync("config.json"));
@@ -10,7 +10,7 @@ var host = config.host;
 var port = config.port;
 var location_compiler = config.location_compiler;
 
-console.log("hai plsss work yippeeee");
+
 
 var app=express();
 //app.use( bodyParser.json() );
@@ -40,7 +40,7 @@ app.post('/code', function (req, res)
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
       console.log(" Entered compile and execute");  
->>>>>>> 486a739c765c2dbaeb184767a3e08adec1eae833
+
     var exec = require('child_process').exec,
     child;
 
