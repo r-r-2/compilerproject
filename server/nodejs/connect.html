@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form action="http:localhost:1331/appdata" method="post">
 <div>
         <label for="email">Email: </label>
@@ -5,3 +6,26 @@
     </div>
 <input value="submit" name="submit" type="submit" />
 </from>
+=======
+
+
+<form action="http:localhost:1331/code" method="post"enctype='application/json' id="trialform">
+   File Name: <input type="text" name ="filename" value="hello.c" /> <br>
+    Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
+    User:<input type="text" name="user" value="test"/><br><br>
+    Enter the Code:<br><textarea name="code" rows="20" cols ="100" form="trialform">
+#include<stdio.h>
+int main()
+{
+ printf("Hello wolrd");
+  return 0;
+}</textarea><br>
+<input value="submit" name="submit" type="submit" /><br>
+</form>
+<form action="http:localhost:1331/compileandexecute" method="post" enctype='application/json' >
+File Name: <input type="text" name ="filename" value="hello.c" /> <br>
+    Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
+    User:<input type="text" name="user" value="test"/><br><br>
+    <input value="submit" name="submit" type="submit" /><br>
+    </form>
+>>>>>>> 486a739c765c2dbaeb184767a3e08adec1eae833

@@ -1,51 +1,59 @@
 var fs = require("fs");
+var bodyParser = require('body-parser')
+var express=require("express");
+
+console.log("hai plsss work yippeeee");
+
 
 var config = JSON.parse(fs.readFileSync("config.json"));
 var host = config.host;
 var port = config.port;
 var location_compiler = config.location_compiler;
 
-console.log(location_compiler);
+console.log("hai plsss work yippeeee");
 
-var express=require("express");
 var app=express();
-console.log("Server startting up");
-app.post('/appdata', function (req, res) {
-var bodyParser = require('body-parser')
-
+//app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+   extended: true
+ })); 
+//app.use(bodyParser.json()); 
+console.log("Server startting up");
 
 
 
-console.log("Post"+req.param('email',null));
+app.post('/code', function (req, res)
+{
+  console.log("Entered Writting ");
+  fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
+    if (err) {
+      console.log("Error Writting to file");
+      throw err;
+    }
+     console.log("File written:"+req.body.filename);
+      
+  });
+   //console.log("Post"+req.body.filename);
+   //res.send(req.body.compiler);
 });
 
-app.get("/:compiler/:filename",function(req,res){
-	//res.send("got a request"+req.params.compiler+" "+req.params.userId);
-        
+app.post("/compileandexecute",function(req,res){
+  //res.send("got a request"+req.params.compiler+" "+req.params.userId);
+      console.log(" Entered compile and execute");  
+
     var exec = require('child_process').exec,
     child;
 
-child = exec(location_compiler+ req.params.compiler+' '+req.params.filename,
+child = exec(location_compiler+" "+req.body.user+" "+ req.body.compiler+' '+req.body.filename,
   function (error, stdout, stderr) {
     //console.log('stdout: '+ stdout);
  if(stderr=="")
-  res.send("Compiled sucessfully");
-else
-    res.send('stderr: ' + stderr);
-    if (error !== null) {
-      console.log('exec error: ' + error);
-    }
-});});
-app.get("/:filename",function(req,res){
-	//res.send("got a request"+req.params.compiler+" "+req.params.userId);
-        
-    var exec = require('child_process').exec,
-    child;
-
-child = exec('script/compiler.sh'+"./"+req.params.filename,
+  {
+    //res.send("Compiled sucessfully");
+    var outputfile;
+    if(req.body.compiler=="gcc"||"g++")
+      outputfile="./a.out"
+    child = exec('script/compiler.sh'+" "+req.body.user+" "+outputfile,
   function (error, stdout, stderr) {
     //console.log('stdout: '+ stdout);
  if(stderr=="")
@@ -55,7 +63,16 @@ else
     if (error !== null) {
       console.log('exec error: ' + error);
     }
+});
+
+  }
+else
+    res.send('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec eror: ' + error);
+    }
 });});
+
 app.listen(port,host);
 
 
