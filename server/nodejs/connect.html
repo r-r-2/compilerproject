@@ -14,10 +14,15 @@ int main()
 }</textarea><br>
 <input value="submit" name="submit" type="submit" /><br>
 </form>
-<form action="http:localhost:1331/compileandexecute" method="post" enctype='application/json' >
+<form action="http:localhost:1331/compileandexecute" method="post" enctype='application/json' id="compilerun" >
 File Name: <input type="text" name ="filename" value="hello.c" /> <br>
     Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
     User:<input type="text" name="user" value="test"/><br><br>
+    Enter the input:<br><textarea name="input"  form="compilerun">
+    1
+    2
+    </textarea><br>
+
     <input value="submit" name="submit" type="submit" /><br>
     </form>
 
