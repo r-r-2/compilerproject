@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
 //app.use(bodyParser.json()); 
-console.log("Server startting up");
+console.log("Server startting UP");
 
 
 

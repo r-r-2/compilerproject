@@ -40,7 +40,7 @@ app.post('/code', function (req, res)
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
       console.log(" Entered compile and execute");  
-
+fs.writeFileSync(req.body.user+"/a.in", req.body.input);
     var exec = require('child_process').exec,
     child;
 
@@ -51,9 +51,19 @@ child = exec(location_compiler+" "+req.body.user+" "+ req.body.compiler+' '+req.
   {
     //res.send("Compiled sucessfully");
     var outputfile;
-    if(req.body.compiler=="gcc"||"g++")
-      outputfile="./a.out"
-    child = exec('script/compiler.sh'+" "+req.body.user+" "+outputfile,
+    if(req.body.compiler=="gcc")
+     {
+      console.log("Entered gcc and g++ execution part"+ req.body.compiler);
+      outputfile="./a.out ";
+     }
+     else
+      if(req.body.compiler=="javac"){
+        console.log("Entered java execution part");
+        var filename=req.body.filename.split(".");
+        outputfile=filename[0];
+    }
+       inputfile="a.in"
+    child = exec('script/execute.sh'+" "+req.body.user+" "+" "+req.body.compiler+" "+outputfile+" "+inputfile ,
   function (error, stdout, stderr) {
     //console.log('stdout: '+ stdout);
  if(stderr=="")
@@ -71,7 +81,8 @@ else
     if (error !== null) {
       console.log('exec eror: ' + error);
     }
-});});
+});
+});
 
 app.listen(port,host);
 
