@@ -17,17 +17,20 @@ var app=express();
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
+app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.json()); 
-console.log("Server startting UP");
+console.log("Server starting up");
 
-
+//app.get('/', function(req,res) {
+  //res.sendfile('connect.html');
+//});
 
 app.post('/code', function (req, res)
 {
-  console.log("Entered Writting ");
+  console.log("Entered Writing ");
   fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
     if (err) {
-      console.log("Error Writting to file");
+      console.log("Error Writing to file");
       throw err;
     }
      console.log("File written:"+req.body.filename);
