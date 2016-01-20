@@ -35,6 +35,7 @@ var filename=document.getElementById('filename').value;
 var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').value;
 var code=document.getElementById('code').value;
+code= encodeURIComponent(code);
 
   xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&code="+code);
 }
@@ -52,7 +53,7 @@ var filename=document.getElementById('filename').value;
 var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').value;
 var input=document.getElementById('input').value;
-
+input=encodeURIComponent(input);
   xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
 }
 
