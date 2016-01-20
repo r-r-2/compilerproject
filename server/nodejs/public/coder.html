@@ -3,8 +3,8 @@
     <head>
         <title>Frontend</title>
        <script src="lib/codemirror.js"></script>
-        File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> <br>
-    Compiler:<input type="text" name ="compiler" value="gcc" id="compiler"/>   <br>
+        File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
+    
     User:<input type="text" name="user" value="test"id="user"/><br><br>
        <link rel="stylesheet" href="theme/3024-day.css">
 <link rel="stylesheet" href="theme/3024-night.css">
@@ -75,7 +75,7 @@ int main()
 }
          
         </textarea>
-       <p>Select a theme: <select onchange="selectTheme()" id=select>
+       <br>Select a theme: <select onchange="selectTheme()" id=select>
     <option selected>blackboard</option>
     <option>3024-day</option>
     <option>3024-night</option>
@@ -123,8 +123,8 @@ int main()
     <option>yeti</option>
     <option>zenburn</option>
 </select>
-</p>
- <p>Select a language: <select  id=selectlang onchange="doall()" >
+
+ Select a language: <select  id=selectlang onchange="doall()" >
         <option value="text/x-csrc" selected>C</option>
         <option value="text/x-c++src">C++</option>
        <option value="text/x-java">Java</option>
@@ -132,12 +132,10 @@ int main()
        </select>
        </p>
    Enter the input:<br><textarea name="input"id="input">
-    1
-    2
-    </textarea><br>
+    1 </textarea><br>
 <button type="button" onclick="SaveDoc()">Save</button>
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
-<div id="demo"><h2>Let AJAX change this text</h2></div>
+<div id="demo"><h2></h2></div>
 
     <script>
        
@@ -153,7 +151,10 @@ int main()
      this.editor.setOption("mode", mode);
       
     }
-   
+   var inputeditor=CodeMirror.fromTextArea(document.getElementById("input"),{
+    lineNumbers:true
+   });
+   inputeditor.setSize(250,130);
         var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
             lineNumbers: true,
             matchBrackets: true,
@@ -175,6 +176,7 @@ int main()
   function selectTheme() {
     var theme = input.options[input.selectedIndex].textContent;
     editor.setOption("theme", theme);
+    inputeditor.setOption("theme",theme);
     location.hash = "#" + theme;
   }
   var choice = (location.hash && location.hash.slice(1)) ||
@@ -183,6 +185,7 @@ int main()
   if (choice) {
     input.value = choice;
     editor.setOption("theme", choice);
+    inputeditor.setOption("theme",choice);
   }
   CodeMirror.on(window, "hashchange", function() {
     var theme = location.hash.slice(1);
@@ -205,7 +208,16 @@ function SaveDoc() {
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
 var filename=document.getElementById('filename').value;
-var compiler=document.getElementById('compiler').value;
+var compiler;
+if(mode=="text/x-csrc")
+ compiler="gcc";
+else if(mode=="text/x-c++src")
+  compiler="g++";
+else if(mode=="text/x-java")
+  compiler="javac";
+else if(mode=="text/x-python")
+  compiler="python";
+
 var user=document.getElementById('user').value;
 var code=editor.getValue();
 code= encodeURIComponent(code);
