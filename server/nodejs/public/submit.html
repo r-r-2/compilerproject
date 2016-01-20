@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% load staticfiles %}
+
+{% block content %}
+         
+     
+        
+        
+    
+<link rel="stylesheet" href="{% static "lib/codemirror.css" %}">
+<link rel="stylesheet" href="{% static "addon/display/fullscreen.css" %}">
+<link rel="stylesheet" href="{% static "addon/fold/foldgutter.css" %}">
+<link rel="stylesheet" href="{% static "addon/dialog/dialog.css" %}">
+<link rel="stylesheet" href="{% static "theme/ambiance.css" %}">
+<link rel="stylesheet" href="{% static "theme/blackboard.css" %}">
+<link rel="stylesheet" href="{% static "theme/cobalt.css" %}">
+<link rel="stylesheet" href="{% static "theme/lesser-dark.css" %}">
+<link rel="stylesheet" href="{% static "theme/mbo.css" %}">
+<link rel="stylesheet" href="{% static "theme/mdn-like.css" %}">
+<link rel="stylesheet" href="{% static "theme/midnight.css" %}">
+<link rel="stylesheet" href="{% static "theme/monokai.css" %}">
+<link rel="stylesheet" href="{% static "theme/neat.css" %}">
+<link rel="stylesheet" href="{% static "theme/neo.css" %}">
+<link rel="stylesheet" href="{% static "theme/night.css" %}">
+<link rel="stylesheet" href="{% static "theme/paraiso-dark.css" %}">
+<link rel="stylesheet" href="{% static "theme/pastel-on-dark.css" %}">
+<link rel="stylesheet" href="{% static "theme/solarized.css" %}">
+          
+          
+
+<div class="view-container">
+
+    <!--
+
+     ngView:  
+
+    -->
+    <section id="content" class="animate-fade-up ng-scope" data-ng-view="">
+        <div class="page page-dashboard ng-scope" data-ng-controller="DashboardCtrl">
+        <div class="row">
+        <div class="col-md-10">
+    
+ 
+<div class="challenge-view container">
+
+    <div>
+        <div class="challenge-header col-md-10">
+            <header class="view_header boundB">
+                
+                <ul class="nav-tabs nav" style="padding-bottom: 1px;">
+                    <li id="problemTab" class="active">
+                        <a class="hr-problem-link" href="/submit?id={{q.id}}">
+
+                            Problem
+
+                        </a>
+                    </li>
+                   <!-- <li id="submissionsTab" class="">
+                        <a class="hr-submissions-link" href="/challenges/solve-me-first/submissions">
+
+                            Submissions
+
+                        </a>
+                    </li> -->
+                    <!--<li id="submissionsTab" class="">
+                        <a class="hr-leaderboard-link" href="/discussion?id={{q.id}}">
+
+                            Discussion Board
+
+                        </a>
+                    </li>-->
+                    
+                </ul>
+            </header>
+        </div>
+
+    <div class="col-md-10">
+        <div class="panel panel-default noborder">
+                             <div class="panel-body">
+
+
+                      <h1 div class="question text-center">
+
+                                  {{q.name}}
+								  
+                                </h1></div>
+                          <br><div class="questiontext questionformat">
+                          	  {{messages}}
+							  {{message_compilation}}
+							  
+                              {{q.desc|linebreaksbr}}
+                              <br /><br />
+                              
+                              <!-- <strong>Example<br /></strong> -->
+                              <br />
+                                
+								{% if q.id == 40 %}
+								<div class="img-responsive">
+
+									<img src="{% static "img/questions/img6.png" %}" />
+								</div>
+								{% endif %}
+								
+
+                              <h4><strong>Sample Input:</strong></h4>
+                              <pre>{{q.input|linebreaksbr}}</pre>
+                              <p>
+                              <div class="text-left"><h4><strong>Sample Output:<br /></strong></h4></div>
+                              <pre>{{q.output|linebreaksbr}}</pre>
+    <br />                                      
+
+                                   
+                        
+                         <div class="wordspacing menuspacing questionformat"> Participants:<span style="color:#999999;">{{q.participants}} </span>  Maxscore:<span style="color:#999999;">{{q.score}} </span>  Difficulty:<span style="color:#999999;">{{q.difficulty}}</span> Timelimit:<span style="color:#999999;">{{q.timelimit}}</span></div> 
+                     
+ 	<br />           
+ 	
+ 	<div class="row">
+<div class ="col-md-10">
+
+<br>
+<p><center><span style="color:#FF6400">Select a theme: </span><select onchange="selectTheme()" style="color:black;" id="selectt">
+    <option>default</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option SELECTED>monokai</option>
+    <option>ambiance</option>
+    <option>blackboard</option>
+    <option>cobalt</option>
+    <option>lesser-dark</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>paraiso-dark</option>
+    <option>pastel-on-dark</option>
+</select>
+</p></center>
+	
+<div>
+<form method="post" action="/fullscreen?id={{q.id}}">
+	{% csrf_token %}
+<p><center><span style="color:#FF6400">Select language:</span> <select id="lang" style="color:black;" name="lang">
+    <option {% if lang == 'C' %} SELECTED {% endif %}value="C">C</option>
+    <option {% if lang == 'C++' %} SELECTED {% endif %}  value="C++">C++</option>
+    <option {% if lang == 'Java' %} SELECTED {% endif %}  value="Java">Java</option>
+    <option {% if lang == 'Python' %} SELECTED {% endif %}  value="Python">Python 2.7</option>
+</select></center>
+</p>
+
+<input type="hidden" id="chlang" name="chlang" value={{lang}}>
+<textarea id="c-code" name='c-code' style="color: white" onkeyup="updatebody(this)">
+{% if not code %}/* C demo code */
+#include <stdio.h>
+int main(){
+	printf("hello world!");
+  return 0;
+}{% else %}{{code}}
+
+
+{% endif %}</textarea></div>
+<div class="fileUpload btn btn-primary">
+Upload
+<input type="file" class="upload" onchange="onFileSelected(event)" style ="a:hover{background:orange}">
+<br>
+</div>
+<div >
+<input type="hidden" id="qid" value="{{q.id}}">
+
+<a  href="fullscreen.html">
+<button   class="btn btn-success btn-lg pull-left" >
+Go Full screen</button></a>
+</form>
+<span style="padding-right:10%">
+<button id="submitbutton" class="btn btn-success btn-lg pull-right" >
+Submit the Code</button>
+</span>
+
+
+<button class=" btn btn-success btn-lg pull-center"  onclick="downloadCode()">Download my code </button>
+</span>
+</div>
+<script src="{% static "js/ajax.js" %}"></script>
+<script src="{% static "lib/codemirror.js" %}"></script>
+<script src="{% static "addon/search/searchcursor.js" %}"></script>
+<script src="{% static "addon/search/search.js" %}"></script>
+<script src="{% static "addon/dialog/dialog.js" %}"></script>
+<script src="{% static "addon/edit/matchbrackets.js" %}"></script>
+<script src="{% static "addon/edit/closebrackets.js" %}"></script>
+<script src="{% static "addon/comment/comment.js" %}"></script>
+<script src="{% static "addon/wrap/hardwrap.js" %}"></script>
+<script src="{% static "addon/fold/foldcode.js" %}"></script>
+<script src="{% static "addon/fold/brace-fold.js" %}"></script>
+<script src="{% static "addon/display/fullscreen.js" %}"></script>
+<script type="text/javascript" src="{% static "mode/clike/clike.js" %}"></script>
+<script type="text/javascript" src="{% static "mode/python/python.js" %}"></script>
+<script type="text/javascript" src="{% static "mode/javascript/javascript.js" %}"></script>
+<script type="text/javascript" src="{% static "mode/go/go.js" %}"></script>
+<script src="{% static "keymap/sublime.js" %}"></script>
+<script type="text/javascript" src="{% static "js/editor.js" %}"></script>
+
+
+        <script src="{% static "scripts/ui.js" %}"></script>
+
+
+
+        <script src="{% static "scripts/app.js" %}"></script>
+        
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+
+
+</div>              
+                               
+
+
+
+</div>
+ 
+  </div>            
+</div>
+ </div>   
+ </div>
+
+   
+
+
+
+</div>
+
+
+{% endblock %}
