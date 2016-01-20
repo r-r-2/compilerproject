@@ -1,5 +1,27 @@
+<!DOCTYPE html>
 <html>
-<head>
-    Hello world
-    </head>
+<body>
+
+<h2>AJAX</h2>
+
+<button type="button" onclick="loadDoc()">Request data</button>
+
+<p id="demo"></p>
+ 
+<script>
+function loadDoc() {
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("GET", "localhost:1331/gcc/hello.c", true);
+  xhttp.send();
+}
+</script>
+
+</body>
 </html>
+

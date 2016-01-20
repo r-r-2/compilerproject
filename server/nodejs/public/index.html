@@ -1,0 +1,65 @@
+
+
+
+
+   File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> <br>
+    Compiler:<input type="text" name ="compiler" value="gcc" id="compiler"/>   <br>
+    User:<input type="text" name="user" value="test"id="user"/><br><br>
+    Enter the Code:<br><textarea name="code" rows="20" cols ="100" id="code">
+#include<stdio.h>
+int main()
+{
+ printf("Hello wolrd");
+  return 0;
+}</textarea><br>
+Enter the input:<br><textarea name="input"id="input">
+    1
+    2
+    </textarea><br>
+<button type="button" onclick="SaveDoc()">Save</button>
+<button type="button" onclick="CompileExecute()">Compile & Execute</button>
+<div id="demo"><h2>Let AJAX change this text</h2></div>
+<script>
+function SaveDoc() {
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert("Saved");
+    }
+  };
+  xhttp.open("POST", "/code", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').value;
+var code=document.getElementById('code').value;
+code= encodeURIComponent(code);
+
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&code="+code);
+}
+function CompileExecute(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+  };
+  xhttp.open("POST", "/compileandexecute", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').value;
+var input=document.getElementById('input').value;
+input=encodeURIComponent(input);
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
+}
+
+</script>
+
+    
+
+    
+

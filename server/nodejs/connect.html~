@@ -1,0 +1,28 @@
+
+
+
+<form action="/code" method="post"enctype='application/json' id="trialform">
+   File Name: <input type="text" name ="filename" value="hello.c" /> <br>
+    Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
+    User:<input type="text" name="user" value="test"/><br><br>
+    Enter the Code:<br><textarea name="code" rows="20" cols ="100" form="trialform">
+#include<stdio.h>
+int main()
+{
+ printf("Hello wolrd");
+  return 0;
+}</textarea><br>
+<input value="submit" name="submit" type="submit" /><br>
+</form>
+<form action="http:localhost:1331/compileandexecute" method="post" enctype='application/json' id="compilerun" >
+File Name: <input type="text" name ="filename" value="hello.c" /> <br>
+    Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
+    User:<input type="text" name="user" value="test"/><br><br>
+    Enter the input:<br><textarea name="input"  form="compilerun">
+    1
+    2
+    </textarea><br>
+
+    <input value="submit" name="submit" type="submit" /><br>
+    </form>
+
