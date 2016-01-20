@@ -1,0 +1,15 @@
+<html>
+<head>
+	<script type="text/javascript" src="js/textarea.js"></script>
+</head>
+<body onLoad="iFrameOn();">
+<form action="my_parse_file.php" name="myform" id="myform" method="post">
+<p>Title: <input name="title"id="title" size="80" maxlength="80"/></p>
+<p>Code: <br>
+	<textarea style="display:none;"name="mytextarea"id="mytextarea" cols="100" rows="14"></textarea>
+	<iframe name="richTextfield" id="richTextfield" style="width:700px ;height:300px"></iframe>
+</p>
+<input name="btn" type="button" value="Submit code" onClick="javascript:submit_form();"/>
+</form>
+<body>
+</html>

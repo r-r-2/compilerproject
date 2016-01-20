@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Frontend</title>
+       <script src="lib/codemirror.js"></script>
+       <link rel="stylesheet" href="lib/codemirror.css">
+         <script src="mode/clike/clike.js"></script>
+         <script src="mode/python/python.js"></script>
+     </head>
+      <style>
+    .CodeMirror {
+        border:1px solid #334;
+        width:800px;
+    }
+      </style>
+    <body>
+        <textarea id="editor"></textarea>
+       <p>Select a language: <select onchange="selectLang()" id=selectlang >
+       	<option value="text/x-csrc" selected>C</option>
+        <option value="text/x-c++src">C++</option>
+       <option value="text/x-java">Java</option>
+       <option value="text/x-python">Python</option>
+       </select>
+       </p>
+    </body>
+    <script>
+       
+        var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+        });
+        var inputlang = document.getElementById("selectlang");
+
+  function selectLang() {
+    var mode = inputlang.options[inputlang.selectedIndex].value;
+    window.alert(mode);editor.setOption("mode", mode);
+    location.hash = "#" + mode;
+  }
+  var choice = (location.hash && location.hash.slice(1)) ||
+               (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+  if (choice) {
+    inputlang.value = choice;
+    editor.setOption("mode", choice);
+  }
+  CodeMirror.on(window, "hashchange", function() {
+    var mode = location.hash.slice(1);
+    if (mode) { inputlang.value = mode; selectLang(); }
+  });
+   </script>
+</html>
