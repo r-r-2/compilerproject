@@ -34,6 +34,7 @@ app.post('/code', function (req, res)
       throw err;
     }
      console.log("File written:"+req.body.filename);
+     res.send("Sucess");
       
   });
    //console.log("Post"+req.body.filename);

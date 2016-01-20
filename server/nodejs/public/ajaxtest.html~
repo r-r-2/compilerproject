@@ -14,9 +14,9 @@ alert("clicked");
       document.getElementById("demo").innerHTML = xhttp.responseText;
     }
   };
-  xhttp.open("POST", "", true);
- xhttp.setRequestHeader("Content-type", "/compileandexecute");
-  xhttp.send("filename=hello.c&compiler=gcc&user=test");
+  xhttp.open("POST", "/test", true);
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+  xhttp.send("filenam=helooo");
 }
 </script>
 

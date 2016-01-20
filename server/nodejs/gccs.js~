@@ -21,10 +21,13 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.json()); 
 console.log("Server starting up");
 
-app.get('/', function(req,res) {
-  res.sendfile('connect.html');
+//app.get('/', function(req,res) {
+  //res.sendfile('connect.html');
+//});
+app.post('/test',function(req,res)
+{
+ console.log("Worked"+req.body.filenam);
 });
-
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
