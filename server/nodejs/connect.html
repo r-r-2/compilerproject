@@ -1,7 +1,7 @@
 
 
 
-<form action="http:localhost:1331/code" method="post"enctype='application/json' id="trialform">
+<form action="/code" method="post"enctype='application/json' id="trialform">
    File Name: <input type="text" name ="filename" value="hello.c" /> <br>
     Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
     User:<input type="text" name="user" value="test"/><br><br>
@@ -14,7 +14,7 @@ int main()
 }</textarea><br>
 <input value="submit" name="submit" type="submit" /><br>
 </form>
-<form action="http:localhost:1331/compileandexecute" method="post" enctype='application/json' id="compilerun" >
+<form action="/compileandexecute" method="post" enctype='application/json' id="compilerun" >
 File Name: <input type="text" name ="filename" value="hello.c" /> <br>
     Compiler:<input type="text" name ="compiler" value="gcc"/>   <br>
     User:<input type="text" name="user" value="test"/><br><br>

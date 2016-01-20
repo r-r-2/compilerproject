@@ -17,38 +17,25 @@ var app=express();
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
+app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.json()); 
-console.log("Server startting up");
 
-app.get('/',function(req,res){
-  res.sendfile('a.html');
-});
+console.log("Server starting up");
 
-app.get('/file', function (req, res)
-{
-  console.log("here files");
-  // console.log("Entered Writting ");
-  // fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
-  //   if (err) {
-  //     console.log("Error Writting to file");
-  //     throw err;
-  //   }
-  //    console.log("File written:"+req.body.filename);
-      
-  //});
-   //console.log("Post"+req.body.filename);
-   //res.send(req.body.compiler);
-});
+//app.get('/', function(req,res) {
+  //res.sendfile('connect.html');
+//});
 
 app.post('/code', function (req, res)
 {
-  console.log("Entered Writting ");
+  console.log("Entered Writing ");
   fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
     if (err) {
-      console.log("Error Writting to file");
+      console.log("Error Writing to file");
       throw err;
     }
      console.log("File written:"+req.body.filename);
+     res.send("Sucess");
       
   });
    //console.log("Post"+req.body.filename);
