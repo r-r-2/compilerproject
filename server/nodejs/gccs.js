@@ -20,7 +20,25 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //app.use(bodyParser.json()); 
 console.log("Server startting up");
 
+app.get('/',function(req,res){
+  res.sendfile('a.html');
+});
 
+app.get('/file', function (req, res)
+{
+  console.log("here files");
+  // console.log("Entered Writting ");
+  // fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
+  //   if (err) {
+  //     console.log("Error Writting to file");
+  //     throw err;
+  //   }
+  //    console.log("File written:"+req.body.filename);
+      
+  //});
+   //console.log("Post"+req.body.filename);
+   //res.send(req.body.compiler);
+});
 
 app.post('/code', function (req, res)
 {
