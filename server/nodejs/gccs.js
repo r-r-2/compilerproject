@@ -64,14 +64,18 @@ app.post('/code', function (req, res)
       console.log("Error Writing to file");
       throw err;
     }
-     console.log("File written:"+req.body.filename);
+    var date=new Date();
+     console.log("File written:"+req.body.filename+ " at:"+date);
      res.send("Sucess");
       
   });
    //console.log("Post"+req.body.filename);
    //res.send(req.body.compiler);
 });
+app.post("/loaddoc",function(req,res){
+  res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
 
+});
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
       console.log(" Entered compile and execute");  

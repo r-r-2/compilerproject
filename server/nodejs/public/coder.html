@@ -139,6 +139,7 @@ int main()
 
     <script>
        
+     setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
      var inputlang = document.getElementById("selectlang");
 
  
@@ -195,13 +196,36 @@ int main()
 
          var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
       CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+  function LoadDoc(){
+       var cursor=editor.getCursor();  
+       
+       var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+       if (xhttp.readyState == 4 && xhttp.status == 200) {
+         
+         editor.setValue(xhttp.responseText);
+          
+        editor.setCursor(cursor);
+          
+      }
+    };
+  
+  
+  xhttp.open("POST", "/loaddoc", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+//var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').value;
+  xhttp.send("filename="+filename+"&user="+user);
+      }
       
 function SaveDoc() {
-
+  
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      alert("Saved");
+      console.log("Saved");
     }
   };
   xhttp.open("POST", "/code", true);
@@ -209,14 +233,7 @@ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
 var filename=document.getElementById('filename').value;
 var compiler;
-if(mode=="text/x-csrc")
- compiler="gcc";
-else if(mode=="text/x-c++src")
-  compiler="g++";
-else if(mode=="text/x-java")
-  compiler="javac";
-else if(mode=="text/x-python")
-  compiler="python";
+
 
 var user=document.getElementById('user').value;
 var code=editor.getValue();
@@ -229,13 +246,23 @@ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       document.getElementById("demo").innerHTML = xhttp.responseText;
+      inputeditor.setValue(xhttp.responseText);
     }
   };
+  
+  if(mode=="text/x-csrc")
+ compiler="gcc";
+else if(mode=="text/x-c++src")
+  compiler="g++";
+else if(mode=="text/x-java")
+  compiler="javac";
+else if(mode=="text/x-python")
+  compiler="python";
   xhttp.open("POST", "/compileandexecute", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
 var filename=document.getElementById('filename').value;
-var compiler=document.getElementById('compiler').value;
+//var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').value;
 var input=document.getElementById('input').value;
 input=encodeURIComponent(input);
