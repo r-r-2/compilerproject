@@ -1,0 +1,5 @@
+{
+    "port":1331,
+    "host":"localhost",
+    "location_compiler":"script/compiler.sh "
+}

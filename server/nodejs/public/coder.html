@@ -3,6 +3,10 @@
     <head>
         <title>Frontend</title>
        <script src="lib/codemirror.js"></script>
+       <script src="bcsocket.js"></script>             <!-- add transport -->
+        <script src="webclient/share.uncompressed.js"></script>      <!-- ShareJS -->
+        <script src="webclient/textarea.js"></script>
+        <script src="share-codemirror.js"></script>
         File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
     
     User:<input type="text" name="user" value="test"id="user"/><br><br>
@@ -123,7 +127,7 @@ int main()
     <option>yeti</option>
     <option>zenburn</option>
 </select>
-
+<textarea id='sharetext' ></textarea>
  Select a language: <select  id=selectlang onchange="doall()" >
         <option value="text/x-csrc" selected>C</option>
         <option value="text/x-c++src">C++</option>
@@ -139,7 +143,10 @@ int main()
 
     <script>
        
-     setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
+            // get the textarea element 
+
+        
+     //setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
      var inputlang = document.getElementById("selectlang");
 
  
@@ -268,6 +275,20 @@ var input=document.getElementById('input').value;
 input=encodeURIComponent(input);
   xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
 }
+console.log("hi");
+            var elem = document.getElementById("editor");
+            var cm = CodeMirror.fromTextArea(elem);
+            // connect to the server
+            var connection = sharejs.open('test', 'text', function(error, doc) {
+                // this function is called once the connection is opened
+                if (error) {
+                    console.log("ERROR:", error);
+                } else {
+                    // attach the ShareJS document to the textarea
+                    // doc.attachCodeMirror(elem);
+                    shareDoc.attachCodeMirror(cm);
+                }
+            });
       
     </script>
 

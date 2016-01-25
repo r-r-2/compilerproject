@@ -1,8 +1,17 @@
 var fs = require("fs");
 var bodyParser = require('body-parser')
 var express=require("express");
+var ShareJS = require('share').server;
+var shareCodeMirror = require('share-codemirror');
 
-
+ShareJSOpts = {
+  browserChannel: {
+    cors: "*"
+  },
+  db: {
+    type: "none"
+  }
+};
 
 
 var config = JSON.parse(fs.readFileSync("config.json"));
@@ -48,8 +57,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(shareCodeMirror.scriptsDir));
 //app.use(bodyParser.json()); 
-
+ShareJS.attach(app, ShareJSOpts);
 console.log("Server starting up");
 
 //app.get('/', function(req,res) {
