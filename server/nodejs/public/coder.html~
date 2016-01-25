@@ -6,7 +6,7 @@
        <script src="bcsocket.js"></script>             <!-- add transport -->
         <script src="webclient/share.uncompressed.js"></script>      <!-- ShareJS -->
         <script src="webclient/textarea.js"></script>
- 	 
+
         File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
     
     User:<input type="text" name="user" value="test"id="user"/><br><br>

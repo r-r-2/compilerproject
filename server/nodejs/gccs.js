@@ -56,7 +56,7 @@ var app=express();
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/UI'));
 app.use(express.static(shareCodeMirror.scriptsDir));
 //app.use(bodyParser.json()); 
 ShareJS.attach(app, ShareJSOpts);
