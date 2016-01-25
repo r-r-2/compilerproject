@@ -1,8 +1,17 @@
 var fs = require("fs");
 var bodyParser = require('body-parser')
 var express=require("express");
+var ShareJS = require('share').server;
+var shareCodeMirror = require('share-codemirror');
 
-
+ShareJSOpts = {
+  browserChannel: {
+    cors: "*"
+  },
+  db: {
+    type: "none"
+  }
+};
 
 
 var config = JSON.parse(fs.readFileSync("config.json"));
@@ -12,13 +21,45 @@ var location_compiler = config.location_compiler;
 
 
 
+'use strict';
+
+var os = require('os');
+var ifaces = os.networkInterfaces();
+
+Object.keys(ifaces).forEach(function (ifname) {
+  var alias = 0;
+
+  ifaces[ifname].forEach(function (iface) {
+    if ('IPv4' !== iface.family || iface.internal !== false) {
+      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+      return;
+    }
+
+    if (alias >= 1) {
+      // this single interface has multiple ipv4 addresses
+      console.log(ifname + ':' + alias, iface.address);
+    } else {
+      // this interface has only one ipv4 adress
+      console.log(ifname, iface.address);
+      host=iface.address;
+    }
+    ++alias;
+  });
+});
+
+
+
+
+
 var app=express();
 //app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(shareCodeMirror.scriptsDir));
 //app.use(bodyParser.json()); 
+ShareJS.attach(app, ShareJSOpts);
 console.log("Server starting up");
 
 //app.get('/', function(req,res) {
@@ -33,14 +74,18 @@ app.post('/code', function (req, res)
       console.log("Error Writing to file");
       throw err;
     }
-     console.log("File written:"+req.body.filename);
+    var date=new Date();
+     console.log("File written:"+req.body.filename+ " at:"+date);
      res.send("Sucess");
       
   });
    //console.log("Post"+req.body.filename);
    //res.send(req.body.compiler);
 });
+app.post("/loaddoc",function(req,res){
+  res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
 
+});
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
       console.log(" Entered compile and execute");  
@@ -89,6 +134,8 @@ else
 });
 
 app.listen(port,host);
+app.listen(port,"localhost");
+
 
 
 

@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+    1
+    
+    
+=======
+        #include<stdio.h>
+int main()
+{
+ printf("Hello wolrd");
+  return 0;
+}
+         
+        
+>>>>>>> fb74af542604b88339f4f46bb0de8c6b9afae525

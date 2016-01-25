@@ -1,7 +1,12 @@
-#include<stdio.h>
+        #include<stdio.h>
 int main()
 {
- int n=10;
- int a=0;
-//"%!@#$^*()"
-scanf("%d",
+ printf("Hello wolrd");
+<<<<<<< HEAD
+ "_- "
+=======
+>>>>>>> fb74af542604b88339f4f46bb0de8c6b9afae525
+  return 0;
+}
+         
+        
