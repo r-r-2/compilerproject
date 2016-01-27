@@ -21,7 +21,30 @@
 	<link rel="prefetch" href="images/zoom.png">
 		
 </head>
+<script>
+	function CheckInput(){
+//alert(document.getElementById("username").value);
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      if(xhttp.responseText=="sucess")
+      	{
+      		alert("sucess");
+      		window.location.href = "/compiler/coder.html";
+      	}
+      else
+      	alert("invalid");
 
+    }
+  };
+  xhttp.open("POST", "/login", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var username=document.getElementById("username").value;
+var password=document.getElementById("password").value;
+console.log(password);
+xhttp.send("username="+username+"&password="+password);
+}
+</script>
 <body>
 	<div class="navbar navbar-fixed-top" data-activeslide="1">
 		<div class="container">
@@ -202,101 +225,7 @@
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 			</div><!-- /row -->
 			  </style>
-</head>
-<body>
-<div id="login">
-<form action="javascript:void(0);" method="get">
-<fieldset>
-<p>    </p>
-<p><input type="text" size="30" required value="Username" onBlur="if(this.value=='')this.value='Username'" onFocus="if(this.value=='Username')this.value='' "id="username"></p>
-<p><input type="password" size="30" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "></p>
-<p><a href="#">Forgot Password?</a></p>
-<div class="controller">
-         <div class="buttons">
-			    <input type="hidden" name="form_id" value="1089768" />
-			    
-				<input id="saveForm" class="button_text"onclick="CheckInput()" type="submit" name="submit" value="Login" />
-		</div>
-          <div class="clear"></div>
-</fieldset>
-</form>
-<br></br>
-</div> <!-- end login -->
-		</div><!-- /container -->
-	</div><!-- /slide5 -->
-<script>
-	function CheckInput(){
-alert("hello");//document.getElementById("username").value);
-}
-</script>
-	<!-- === Slide 6 / Contact === -->
-	<div class="slide story" id="slide-6" data-slide="6">
-		<div class="container">
-			<div class="row title-row">
-				<div class="col-12 font-light">Leave us a <span class="font-semibold">message</span></div>
-			</div><!-- /row -->
-			<div class="row line-row">
-				<div class="hr">&nbsp;</div>
-			</div><!-- /row -->
-			<div class="row subtitle-row">
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-10 font-light">You can find us literally anywhere, just push a button and we’re there</div>
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div><!-- /row -->
-			<div id="contact-row-4" class="row">
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a target="_blank" href="#"><i class="icon icon-phone"></i></a></p>
-					<span class="hover-text font-light ">+918281819031</span></a>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a target="_blank" href="#"><i class="icon icon-envelope"></i></a></p>
-					<span class="hover-text font-light ">suraj94mec@gmail.com</span></a>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a target="_blank" href="#"><i class="icon icon-home"></i></a></p>
-					<span class="hover-text font-light ">Kochi, Kerala<br>zip code 682021</span></a>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a target="_blank" href="#"><i class="icon icon-facebook"></i></a></p>
-					<span class="hover-text font-light ">facebook/suraj.devesan</span></a>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2 with-hover-text">
-					<p><a target="_blank" href="#"><i class="icon icon-twitter"></i></a></p>
-					<span class="hover-text font-light ">@surajd_co</span></a>
-				</div><!-- /col12 -->
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div><!-- /row -->
-		</div><!-- /container -->
-	</div><!-- /Slide 6 -->
-	
-</body>
 
-	<!-- SCRIPTS -->
-	<script src="js/html5shiv.js"></script>
-	<script src="js/jquery-1.10.2.min.js"></script>
-	<script src="js/jquery-migrate-1.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
-	<script src="js/script.js"></script>
-	
-	<!-- fancybox init -->
-	<script>
-	$(document).ready(function(e) {
-		var lis = $('.nav > li');
-		menu_focus( lis[0], 1 );
-		
-		$(".fancybox").fancybox({
-			padding: 10,
-			helpers: {
-				overlay: {
-					locked: false
-				}
-			}
-		});
-	
-	});
-	</script>
+</body>
 
 </html>
