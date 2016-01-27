@@ -17,7 +17,7 @@ con.connect(function(err){
   console.log('Connection established');
     
 });
-con.query('SELECT * FROM user',function(err,rows){
+con.query('SELECT * FROM login',function(err,rows){
   if(err) throw err;
 
   console.log('Data received from Db:\n');

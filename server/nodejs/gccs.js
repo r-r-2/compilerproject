@@ -3,15 +3,68 @@ var bodyParser = require('body-parser')
 var express=require("express");
 var ShareJS = require('share').server;
 var shareCodeMirror = require('share-codemirror');
+var mysql = require("mysql");
+var http = require('http');
+var Duplex = require('stream').Duplex;
+var browserChannel = require('browserchannel').server;
+var livedb = require('livedb');
+var sharejs = require('share');
+var shareCodeMirror = require('..');
+var backend = livedb.client(livedb.memory());
+var share = sharejs.server.createClient({backend: backend});
+var app=express();
 
-ShareJSOpts = {
-  browserChannel: {
-    cors: "*"
-  },
-  db: {
-    type: "none"
+app.use(express.static(__dirname));
+app.use(express.static(shareCodeMirror.scriptsDir));
+app.use(express.static(__dirname + '/../node_modules/codemirror/lib'));
+app.use(express.static(sharejs.scriptsDir));
+app.use(browserChannel(function (client) {
+  var stream = new Duplex({objectMode: true});
+  stream._write = function (chunk, encoding, callback) {
+    if (client.state !== 'closed') {
+      client.send(chunk);
+    }
+    callback();
+  };
+  stream._read = function () {
+  };
+  stream.headers = client.headers;
+  stream.remoteAddress = stream.address;
+  client.on('message', function (data) {
+    stream.push(data);
+  });
+  stream.on('error', function (msg) {
+    client.stop();
+  });
+  client.on('close', function (reason) {
+    stream.emit('close');
+    stream.emit('end');
+    stream.end();
+  });
+  return share.listen(stream);
+}));
+
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "root",
+    database: "compilerproject",
+  port: '/var/run/mysqld/mysqld.sock'    
+});
+
+con.connect(function(err){
+  if(err){
+    console.log('Error connecting to Db');
+    return;
   }
-};
+  console.log('Connection established');
+ 
+  
+
+});
+
+
 
 
 var config = JSON.parse(fs.readFileSync("config.json"));
@@ -51,12 +104,11 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 
 
-var app=express();
 //app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
-app.use(express.static(__dirname + '/public/UI'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.static(shareCodeMirror.scriptsDir));
 //app.use(bodyParser.json()); 
 ShareJS.attach(app, ShareJSOpts);
@@ -65,7 +117,37 @@ console.log("Server starting up");
 //app.get('/', function(req,res) {
   //res.sendfile('connect.html');
 //});
+app.post('/login', function (req, res)
+{
+  console.log("here");
+ var returnstring="failure";
+  var username=req.body.username;
+   var password=req.body.password;
+   con.query('SELECT password FROM login where username="'+username+'"',function(err,rows){
+  //if(err) throw err;
+  if(rows[0]!=null){
+console.log(password+","+rows[0].password)
+  if(password==rows[0].password)
+    returnstring="sucess";
+ }
+   //res.send("valid");
+  //  else
+  //   res.send("invalid");//    con.end(function(err) {
+//     console.log('Connection Terminatting');
+//   // The connection is terminated gracefully
+//   // Ensures all previously enqueued queries are still
+//   // before sending a COM_QUIT packet to the MySQL server.
+// });
+   res.send(returnstring);
+  
+//res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/public/compiler/coder.html");
 
+});
+ 
+  
+   //console.log("Post"+req.body.filename);
+   //res.send(req.body.compiler);
+});
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
