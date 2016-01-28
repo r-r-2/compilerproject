@@ -1,2 +1,2 @@
-cd /home/suraj/Desktop/compilerproject/server/nodejs/$1
+cd /home/nis/Desktop/share-codemirror/examples/$1
 $2 $3

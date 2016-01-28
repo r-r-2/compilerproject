@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/codemirror.js"></script>
+<link rel="stylesheet" href="/codemirror.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="/channel/bcsocket.js"></script>
+<script src="/share.js"></script>
+<script src="/share-codemirror.js"></script>
+File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
+    
+    User:<input type="text" name="user" value="test"id="user"/><br><br>
+       <link rel="stylesheet" href="theme/3024-day.css">
+<link rel="stylesheet" href="theme/3024-night.css">
+<link rel="stylesheet" href="theme/abcdef.css">
+<link rel="stylesheet" href="theme/ambiance.css">
+<link rel="stylesheet" href="theme/base16-dark.css">
+<link rel="stylesheet" href="theme/bespin.css">
+<link rel="stylesheet" href="theme/base16-light.css">
+<link rel="stylesheet" href="theme/blackboard.css">
+<link rel="stylesheet" href="theme/cobalt.css">
+<link rel="stylesheet" href="theme/colorforth.css">
+<link rel="stylesheet" href="theme/dracula.css">
+<link rel="stylesheet" href="theme/eclipse.css">
+<link rel="stylesheet" href="theme/elegant.css">
+<link rel="stylesheet" href="theme/erlang-dark.css">
+<link rel="stylesheet" href="theme/hopscotch.css">
+<link rel="stylesheet" href="theme/icecoder.css">
+<link rel="stylesheet" href="theme/isotope.css">
+<link rel="stylesheet" href="theme/lesser-dark.css">
+<link rel="stylesheet" href="theme/liquibyte.css">
+<link rel="stylesheet" href="theme/material.css">
+<link rel="stylesheet" href="theme/mbo.css">
+<link rel="stylesheet" href="theme/mdn-like.css">
+<link rel="stylesheet" href="theme/midnight.css">
+<link rel="stylesheet" href="theme/monokai.css">
+<link rel="stylesheet" href="theme/neat.css">
+<link rel="stylesheet" href="theme/neo.css">
+<link rel="stylesheet" href="theme/night.css">
+<link rel="stylesheet" href="theme/paraiso-dark.css">
+<link rel="stylesheet" href="theme/paraiso-light.css">
+<link rel="stylesheet" href="theme/pastel-on-dark.css">
+<link rel="stylesheet" href="theme/railscasts.css">
+<link rel="stylesheet" href="theme/rubyblue.css">
+<link rel="stylesheet" href="theme/seti.css">
+<link rel="stylesheet" href="theme/solarized.css">
+<link rel="stylesheet" href="theme/the-matrix.css">
+<link rel="stylesheet" href="theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="theme/ttcn.css">
+<link rel="stylesheet" href="theme/twilight.css">
+<link rel="stylesheet" href="theme/vibrant-ink.css">
+<link rel="stylesheet" href="theme/xq-dark.css">
+<link rel="stylesheet" href="theme/xq-light.css">
+<link rel="stylesheet" href="theme/yeti.css">
+<link rel="stylesheet" href="theme/zenburn.css">
+       <link rel="stylesheet" href="addon/display/fullscreen.css">
+<link rel="stylesheet" href="lib/codemirror.css">
+<script src="mode/clike/clike.js"></script>
+<script src="addon/display/fullscreen.js"></script>
+<script src="addon/hint/anyword-hint.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+<link rel="stylesheet" href="addon/hint/show-hint.css">
+<script src="addon/hint/show-hint.js"></script>
+    </head>
+    <style>
+    .CodeMirror {
+        border:1px solid #334;
+        width:800px;
+    }
+</style>
+<body>
+
+
+<textarea id="editor" name="code">
+       
+         
+        </textarea>
+        
+       <br>Select a theme: <select onchange="selectTheme()" id=select>
+    <option selected>blackboard</option>
+    <option>3024-day</option>
+    <option>3024-night</option>
+    <option>abcdef</option>
+    <option>ambiance</option>
+    <option>base16-dark</option>
+    <option>base16-light</option>
+    <option>bespin</option>
+    <option>default</option>
+    <option>cobalt</option>
+    <option>colorforth</option>
+    <option>dracula</option>
+    <option>eclipse</option>
+    <option>elegant</option>
+    <option>erlang-dark</option>
+    <option>hopscotch</option>
+    <option>icecoder</option>
+    <option>isotope</option>
+    <option>lesser-dark</option>
+    <option>liquibyte</option>
+    <option>material</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>monokai</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>paraiso-dark</option>
+    <option>paraiso-light</option>
+    <option>pastel-on-dark</option>
+    <option>railscasts</option>
+    <option>rubyblue</option>
+    <option>seti</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option>the-matrix</option>
+    <option>tomorrow-night-bright</option>
+    <option>tomorrow-night-eighties</option>
+    <option>ttcn</option>
+    <option>twilight</option>
+    <option>vibrant-ink</option>
+    <option>xq-dark</option>
+    <option>xq-light</option>
+    <option>yeti</option>
+    <option>zenburn</option>
+</select>
+
+ Select a language: <select  id=selectlang onchange="doall()" >
+        <option value="text/x-csrc" selected>C</option>
+        <option value="text/x-c++src">C++</option>
+       <option value="text/x-java">Java</option>
+       <option value="text/x-python">Python</option>
+       </select>
+       </p>
+   Enter the input:<br><textarea name="input"id="input">
+    1 </textarea><br>
+<button type="button" onclick="SaveDoc()">Save</button>
+<button type="button" onclick="CompileExecute()">Compile & Execute</button>
+<div id="demo"><h2></h2></div>
+<script>
+       
+            // get the textarea element 
+
+        
+     //setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
+     var inputlang = document.getElementById("selectlang");
+
+ 
+    var mode = inputlang.options[inputlang.selectedIndex].value;
+    function doall(){
+       inputlang = document.getElementById("selectlang");
+
+ 
+     mode = inputlang.options[inputlang.selectedIndex].value;
+     this.editor.setOption("mode", mode);
+      
+    }
+   var inputeditor=CodeMirror.fromTextArea(document.getElementById("input"),{
+    lineNumbers:true
+   });
+   inputeditor.setSize(250,130);
+        editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            matchBrackets: true,
+
+            mode:  mode,
+            
+              extraKeys: {
+        
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+
+        }
+      }
+        });
+var s = new BCSocket(null, {reconnect: true});
+var sjs = new window.sharejs.Connection(s);
+var doc = sjs.get('users', 'sephx');
+
+doc.subscribe();
+doc.whenReady(function () {
+  if (!doc.type) doc.create('text');
+  if (doc.type && doc.type.name === 'text') {
+    doc.attachCodeMirror(editor);
+  }
+});
+
+
+
+         var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].textContent;
+    editor.setOption("theme", theme);
+    inputeditor.setOption("theme",theme);
+    location.hash = "#" + theme;
+  }
+  var choice = (location.hash && location.hash.slice(1)) ||
+               (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+    inputeditor.setOption("theme",choice);
+  }
+  CodeMirror.on(window, "hashchange", function() {
+    var theme = location.hash.slice(1);
+    if (theme) { input.value = theme; selectTheme(); }
+  });
+
+
+         var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
+      CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+  function LoadDoc(){
+       var cursor=editor.getCursor();  
+       
+       var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+       if (xhttp.readyState == 4 && xhttp.status == 200) {
+         
+         editor.setValue(xhttp.responseText);
+          
+        editor.setCursor(cursor);
+          
+      }
+    };
+  
+  
+  xhttp.open("POST", "/loaddoc", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+//var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').value;
+  xhttp.send("filename="+filename+"&user="+user);
+      }
+      
+function SaveDoc() {
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      console.log("Saved");
+    }
+  };
+  xhttp.open("POST", "/code", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+var compiler;
+
+
+var user=document.getElementById('user').value;
+var code=editor.getValue();
+code= encodeURIComponent(code);
+
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&code="+code);
+}
+function CompileExecute(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+      inputeditor.setValue(xhttp.responseText);
+    }
+  };
+  
+  if(mode=="text/x-csrc")
+ compiler="gcc";
+else if(mode=="text/x-c++src")
+  compiler="g++";
+else if(mode=="text/x-java")
+  compiler="javac";
+else if(mode=="text/x-python")
+  compiler="python";
+  xhttp.open("POST", "/compileandexecute", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+//var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').value;
+var input=document.getElementById('input').value;
+input=encodeURIComponent(input);
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
+}
+console.log("hi");
+           
+      
+    </script>
+
+<script>
+/*var elem = document.getElementById('editor');
+var cm = CodeMirror.fromTextArea(elem, {
+  mode: "text/plain"
+});
+
+*/
+function monkeyType() {
+  var textLength = cm.getValue().length;
+  var pos = Math.floor(Math.random()*textLength);
+  var from = cm.posFromIndex(pos);
+  var editLength = randomInt(10)
+  if(Math.random() < 0.9) {
+    // Add text
+    var text =  randomString(editLength);
+    cm.replaceRange(text, cm.posFromIndex(pos));
+  } else {
+    var endIndex = Math.max(pos + editLength, textLength-1);
+    var to = cm.posFromIndex(endIndex);
+    cm.replaceRange('', from, to);
+  }
+}
+
+function randomString(len) {
+	var chars = "0123456789\nABCDEF\nGHIJKLM\nNOPQRSTUVWXTZ\nabcde\nfghiklmnop\nqrstuvwxyz";
+	var result = '';
+	for (var i=0; i<len; i++) {
+		var rnum = randomInt(chars.length);
+		result += chars.substring(rnum, rnum+1);
+	}
+  return result;
+}
+
+function randomInt(max) {
+  return Math.floor(Math.random()*max);
+}
+
+</script>
+ 
+    
+  
+</body>
+</html>
