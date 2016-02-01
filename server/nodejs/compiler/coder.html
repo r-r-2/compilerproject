@@ -7,6 +7,22 @@
 <script src="/channel/bcsocket.js"></script>
 <script src="/share.js"></script>
 <script src="/share-codemirror.js"></script>
+<script src="../offline/offline.js"></script>
+
+<<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
+
+<script>
+var run = function(){
+  var req = new XMLHttpRequest();
+  req.timeout = 5000;
+  req.open('GET', 'http://localhost:7007', true);
+  req.send();
+  alert(Offline.state);
+}
+
+setInterval(run, 3000);
+</script>
 File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
     
     User:<input type="text" name="user" value="test"id="user"/><br><br>

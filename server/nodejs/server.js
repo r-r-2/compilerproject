@@ -12,6 +12,10 @@ var backend = livedb.client(livedb.memory());
 var share = sharejs.server.createClient({backend: backend});
 
 var app = express();
+var favicon = require('serve-favicon');
+ 
+var app = express();
+app.use(favicon('./favicon.ico'));
 app.use(express.static(__dirname));
 //app.use(express.static(shareCodeMirror.scriptsDir));
 app.use(express.static(__dirname + '/../node_modules/codemirror/lib'));
@@ -111,9 +115,10 @@ app.use(express.static(__dirname + '/public'));
 
 console.log("Server starting up");
 
-//app.get('/', function(req,res) {
-  //res.sendfile('connect.html');
-//});
+app.get('/icontest', function(req,res) {
+	console.log("here");
+  res.sendFile('/home/suraj/Desktop/compilerproject/server/nodejs/compiler/favicon.ico');
+});
 app.post('/login', function (req, res)
 {
   console.log("here");
@@ -145,6 +150,9 @@ console.log(password+","+rows[0].password)
    //console.log("Post"+req.body.filename);
    //res.send(req.body.compiler);
 });
+
+
+
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
