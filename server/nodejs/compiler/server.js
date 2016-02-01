@@ -97,23 +97,23 @@ Object.keys(ifaces).forEach(function (ifname) {
   });
 });
 
-
-
+app.get('/', function(req,res) {
+ console.log("here");
+  res.sendFile('index.html');
+});
 
 
 //app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
  })); 
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 //app.use(bodyParser.json()); 
 
 console.log("Server starting up");
 
-//app.get('/', function(req,res) {
-  //res.sendfile('connect.html');
-//});
+
 app.post('/login', function (req, res)
 {
   console.log("here");

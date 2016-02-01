@@ -104,7 +104,9 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 
 
+var favicon = require('serve-favicon');
 
+app.use(favicon(__dirname + '/favicon.ico'));
 //app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
@@ -114,6 +116,10 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.json()); 
 
 console.log("Server starting up");
+app.get('/check', function(req,res) {
+ console.log("here");
+  res.send('sucessjjj');
+});
 
 app.get('/icontest', function(req,res) {
 	console.log("here");
@@ -151,8 +157,28 @@ console.log(password+","+rows[0].password)
    //res.send(req.body.compiler);
 });
 
+<<<<<<< HEAD
 
 
+=======
+app.post('/signup', function (req, res)
+{
+
+ var returnstring="failure";
+  var username=req.body.username;
+   var password=req.body.password;
+var email=req.body.email;
+username="'"+username+"'";
+email="'"+email+"'";
+password="'"+password+"'";
+  console.log(username);
+   con.query("INSERT into login values ("+username+","+password+","+email+")",function(err,rows){
+  if(err) res.send(err);
+else
+res.send("sucess");
+});  
+});
+>>>>>>> ee60bab4261cd91fd5e0249788a9c3b0143d0331
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
