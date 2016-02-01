@@ -1,4 +1,4 @@
-cd /home/nis/Desktop/share-codemirror/examples/$1
+cd /home/suraj/Desktop/compilerproject/server/nodejs/$1
  
 if [ $2 = "javac" ]; then
                java $3 < $4

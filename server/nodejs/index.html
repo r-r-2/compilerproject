@@ -52,7 +52,7 @@ var xhttp = new XMLHttpRequest();
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       if(xhttp.responseText=="sucess")
       	{
-window.location.href = "/compiler/coder.html";
+window.location.href = "/compiler/coder.html?username="+username;
 
       	}
       else

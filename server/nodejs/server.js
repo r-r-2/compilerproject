@@ -157,10 +157,28 @@ console.log(password+","+rows[0].password)
    //res.send(req.body.compiler);
 });
 
-<<<<<<< HEAD
+app.post('/filelist', function (req, res)
+{
 
+ var returnstring="failure";
+  var username=req.body.username;
+    
 
-=======
+   var exec = require('child_process').exec,
+    child;
+
+child = exec("script/compiler.sh"+" "+username+" "+"ls",
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file list");
+   console.log(error);
+ } 
+    else
+      {
+        console.log("hey"+stdout);
+}  
+});
+});
 app.post('/signup', function (req, res)
 {
 
@@ -171,14 +189,34 @@ var email=req.body.email;
 username="'"+username+"'";
 email="'"+email+"'";
 password="'"+password+"'";
-  console.log(username);
-   con.query("INSERT into login values ("+username+","+password+","+email+")",function(err,rows){
-  if(err) res.send(err);
-else
-res.send("sucess");
-});  
+  console.log(username);   
+
+   var exec = require('child_process').exec,
+    child;
+
+child = exec("script/signup.sh"+" "+username,
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file creation");
+   console.log(error);
+ } 
+    else
+      {
+        con.query("insert into login  values ("+username+","+password+","+email+")",function(err,rows){
+       if(err) {
+        console.log(err);
+        res.send(err);
+      }
+        res.send("sucess");
+      
+      
+   });
+
+
+}  
 });
->>>>>>> ee60bab4261cd91fd5e0249788a9c3b0143d0331
+});
+
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
