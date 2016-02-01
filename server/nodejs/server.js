@@ -100,7 +100,9 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 
 
+var favicon = require('serve-favicon');
 
+app.use(favicon(__dirname + '/favicon.ico'));
 //app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
    extended: true
@@ -110,6 +112,10 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.json()); 
 
 console.log("Server starting up");
+app.get('/check', function(req,res) {
+ console.log("here");
+  res.send('sucessjjj');
+});
 
 //app.get('/', function(req,res) {
   //res.sendfile('connect.html');
@@ -144,6 +150,24 @@ console.log(password+","+rows[0].password)
   
    //console.log("Post"+req.body.filename);
    //res.send(req.body.compiler);
+});
+
+app.post('/signup', function (req, res)
+{
+
+ var returnstring="failure";
+  var username=req.body.username;
+   var password=req.body.password;
+var email=req.body.email;
+username="'"+username+"'";
+email="'"+email+"'";
+password="'"+password+"'";
+  console.log(username);
+   con.query("INSERT into login values ("+username+","+password+","+email+")",function(err,rows){
+  if(err) res.send(err);
+else
+res.send("sucess");
+});  
 });
 app.post('/code', function (req, res)
 {

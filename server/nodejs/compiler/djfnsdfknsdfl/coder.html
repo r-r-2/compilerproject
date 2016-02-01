@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<body>
+<header>
+		   	    
+      <div class="boxed">
+      <div align="left">
+      <h2><font size="6" color="#FFFFFF">&nbsp &nbsp Codeit</h2></font>
+    			</header></body></div></div><br></br>
+
+<div class="newspaper">
 <script src="lib/codemirror.js"></script>
 <link rel="stylesheet" href="/codemirror.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="/channel/bcsocket.js"></script>
 <script src="/share.js"></script>
 <script src="/share-codemirror.js"></script>
-File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
-    
-    User:<input type="text" name="user" value="test"id="user"/><br><br>
+
        <link rel="stylesheet" href="theme/3024-day.css">
 <link rel="stylesheet" href="theme/3024-night.css">
 <link rel="stylesheet" href="theme/abcdef.css">
@@ -62,7 +69,6 @@ File Name: <input type="text" name ="filename" value="hello.c" id="filename"/>
 <script src="addon/edit/matchbrackets.js"></script>
 <link rel="stylesheet" href="addon/hint/show-hint.css">
 <script src="addon/hint/show-hint.js"></script>
-<script src="../offline.min.js"></script>
     </head>
     <style>
     .CodeMirror {
@@ -71,19 +77,6 @@ File Name: <input type="text" name ="filename" value="hello.c" id="filename"/>
     }
 </style>
 <body>
-<link rel="stylesheet" href="themes/offline-theme-chrome.css" />
-<link rel="stylesheet" href="themes/offline-language-english.css" />
-
-<script>
-var run = function(){
-  var req = new XMLHttpRequest();
-  req.timeout = 5000;
-  req.open('GET', 'http://localhost:7007', true);
-  req.send();
-}
-
-//setInterval(run, 3000);
-</script>
 
 
 <textarea id="editor" name="code">
@@ -151,7 +144,7 @@ var run = function(){
     1 </textarea><br>
 <button type="button" onclick="SaveDoc()">Save</button>
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
-<div id="demo"><h2></h2></div>
+<div id="demo"><h2></h2></div></div>
 <script>
        
             // get the textarea element 
