@@ -44,6 +44,7 @@ var password=document.getElementById("password").value;
 console.log(password);
 xhttp.send("username="+username+"&password="+password);
 }
+
 function signup(){
 //alert(document.getElementById("username").value);
 var xhttp = new XMLHttpRequest();
@@ -51,7 +52,7 @@ var xhttp = new XMLHttpRequest();
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       if(xhttp.responseText=="sucess")
       	{
-window.location.href = "/compiler/coder.html";
+window.location.href = "/compiler/coder.html?username="+username;
 
       	}
       else
@@ -198,7 +199,7 @@ xhttp.send("username="+username+"&password="+password+"&email="+email);
 			<!--<ul >
 			
 					<li id="li_1" >-->
-		<label class="description" for="element_1">Name </label>
+		<label class="description" for="element_1">UserName </label>
 		<div>
 			<input id="element_1" name= "element_1" class="element text medium" maxlength="255" size="30" value=""/>
 		</div>	
@@ -219,7 +220,9 @@ xhttp.send("username="+username+"&password="+password+"&email="+email);
 					<div class="buttons">
 			    <input type="hidden" name="form_id" value="1089768" />
 			    
+
 				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit"onclick="signup()" />
+
 		</div>
 			
 		</form>	

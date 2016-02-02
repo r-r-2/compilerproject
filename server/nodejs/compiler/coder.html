@@ -7,9 +7,46 @@
 <script src="/channel/bcsocket.js"></script>
 <script src="/share.js"></script>
 <script src="/share-codemirror.js"></script>
+<script src="../offline/offline.js"></script>
+
+<<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
+
+<script>
+// var run = function(){
+//   var req = new XMLHttpRequest();
+//   req.timeout = 5000;
+//   req.open('GET', 'http://localhost:7007', true);
+//   req.send();
+//   alert(Offline.state);
+// }
+
+// setInterval(run, 3000);
+
+
+</script>
 File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
-    
-    User:<input type="text" name="user" value="test"id="user"/><br><br>
+    <label id="user"></label>
+    <script type="text/javascript">
+var url =document.URL;
+var username=url.split('=');
+document.getElementById('user').innerHTML = username[1];
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      
+          alert(xhttp.responseText);
+          
+        
+    }
+  };
+  xhttp.open("POST", "/filelist", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+xhttp.send("username="+username[1]);
+    </script>
+   
        <link rel="stylesheet" href="theme/3024-day.css">
 <link rel="stylesheet" href="theme/3024-night.css">
 <link rel="stylesheet" href="theme/abcdef.css">
@@ -248,7 +285,7 @@ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
 var filename=document.getElementById('filename').value;
 //var compiler=document.getElementById('compiler').value;
-var user=document.getElementById('user').value;
+var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
       }
       
@@ -267,7 +304,7 @@ var filename=document.getElementById('filename').value;
 var compiler;
 
 
-var user=document.getElementById('user').value;
+var user=document.getElementById('user').textContent;
 var code=editor.getValue();
 code= encodeURIComponent(code);
 
@@ -295,7 +332,7 @@ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
 var filename=document.getElementById('filename').value;
 //var compiler=document.getElementById('compiler').value;
-var user=document.getElementById('user').value;
+var user=document.getElementById('user').textContent;
 var input=document.getElementById('input').value;
 input=encodeURIComponent(input);
   xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
