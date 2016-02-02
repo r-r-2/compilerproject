@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
+
+
 <head lang="en">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
+
 	<title>Codeit</title> 
 	<meta name="description" content="BlackTie.co - Free Handsome Bootstrap Themes" />	    
 	<meta name="keywords" content="themes, bootstrap, free, templates, bootstrap 3, freebie,">
@@ -22,29 +24,7 @@
 		
 </head>
 <script>
-	function CheckInput(){
-//alert(document.getElementById("username").value);
-var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-      if(xhttp.responseText=="sucess")
-      	{
-      		alert("sucess");
-      		window.location.href = "/compiler/coder.html";
-      	}
-      else
-      	alert("invalid");
-
-    }
-  };
-  xhttp.open("POST", "/login", true);
-xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var username=document.getElementById("username").value;
-var password=document.getElementById("password").value;
-console.log(password);
-xhttp.send("username="+username+"&password="+password);
-}
-
+	
 function signup(){
 //alert(document.getElementById("username").value);
 var xhttp = new XMLHttpRequest();
@@ -70,6 +50,31 @@ xhttp.send("username="+username+"&password="+password+"&email="+email);
 }
 </script>
 <body>
+<script>
+function CheckInput(){
+alert("here");
+var username=document.getElementById("username").value;
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      if(xhttp.responseText=="sucess")
+      	{
+      		alert("sucess");
+      		window.location.href = "/compiler/coder.html?username="+username;
+      	}
+      else
+      	alert("invalid");
+
+    }
+  };
+  xhttp.open("POST", "/login", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var username=document.getElementById("username").value;
+var password=document.getElementById("password").value;
+console.log(password);
+xhttp.send("username="+username+"&password="+password);
+}
+</script>
 	<div class="navbar navbar-fixed-top" data-activeslide="1">
 		<div class="container">
 		

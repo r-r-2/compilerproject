@@ -35,7 +35,8 @@ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       
-          alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+          alert(filenames[0]);
           
         
     }

@@ -175,7 +175,8 @@ child = exec("script/compiler.sh"+" "+username+" "+"ls",
  } 
     else
       {
-        console.log("hey"+stdout);
+        console.log("List "+stdout);
+        res.send(stdout);
 }  
 });
 });
