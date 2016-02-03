@@ -198,6 +198,7 @@ var run = function(){
 <button type="button" onclick="SaveDoc()">Save</button>
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
 <button type="button" onclick="Commit()">Commit</button>
+<button type="button" onclick="Undo()">Undo</button>
 <div id="demo"><h2></h2></div>
 <script>
        
@@ -318,7 +319,26 @@ var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
 }
 
-            
+   function Undo(){
+        
+        var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+var commitids=xhttp.responseText.split(" ");
+      alert(commitids[0]);
+    }
+  };
+  xhttp.open("POST", "/undo", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename+"&user="+user);
+}
+         
 function SaveDoc() {
   
   var xhttp = new XMLHttpRequest();

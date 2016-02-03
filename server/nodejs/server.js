@@ -180,6 +180,31 @@ child = exec("script/compiler.sh"+" "+username+" "+"ls",
 }  
 });
 });
+
+app.post('/undo', function (req, res)
+{
+
+ var returnstring="failure";
+  var username=req.body.user;
+    
+
+   var exec = require('child_process').exec,
+    child;
+
+child = exec("script/compiler.sh"+" "+username+" "+"git"+" "+"log"+" "+"--pretty=oneline"+" "+req.body.filename,
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file list");
+   console.log(error);
+ } 
+    else
+      {
+        console.log("List "+stdout);
+        res.send(stdout);
+}  
+});
+});
+
 app.post('/signup', function (req, res)
 {
 
@@ -236,7 +261,7 @@ app.post('/code', function (req, res)
 });
 app.post("/loaddoc",function(req,res){
   console.log("In loaddoc");
-  res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
+  res.sendFile("/home/nis/Desktop/gh/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
 
 });
 app.post("/commit",function(req,res){
@@ -254,7 +279,7 @@ child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"add"+" "+req.
     else
       {
         
-console.log("Sucess");
+console.log("Sucess add");
 child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"commit "+" "+"-m "+" " +"'test'",
   function (error, stdout, stderr) {
     if(error)
