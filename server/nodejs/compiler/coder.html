@@ -9,7 +9,7 @@
 <script src="/share-codemirror.js"></script>
 <script src="../offline/offline.js"></script>
 
-<<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
 <link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
 
 <script>
@@ -25,7 +25,11 @@
 
 
 </script>
-File Name: <input type="text" name ="filename" value="hello.c" id="filename"/> 
+<form name="myform">
+<select name="filename"id="filename"onchange="LoadDoc()">
+ </select>
+ </form>
+
     <label id="user"></label>
     <script type="text/javascript">
 var url =document.URL;
@@ -36,7 +40,11 @@ var xhttp = new XMLHttpRequest();
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       
           var filenames=xhttp.responseText.split("\n");
-          alert(filenames[0]);
+          
+          var master=document.myform.filename; 
+          for (i=0; i<filenames.length-1; i++){
+    master.options[master.options.length]=new Option(filenames[i],filenames[i],false,false);
+}
           
         
     }
@@ -189,6 +197,7 @@ var run = function(){
     1 </textarea><br>
 <button type="button" onclick="SaveDoc()">Save</button>
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
+<button type="button" onclick="Commit()">Commit</button>
 <div id="demo"><h2></h2></div>
 <script>
        
@@ -267,7 +276,6 @@ doc.whenReady(function () {
          var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
       CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
   function LoadDoc(){
-       var cursor=editor.getCursor();  
        
        var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
@@ -275,7 +283,7 @@ doc.whenReady(function () {
          
          editor.setValue(xhttp.responseText);
           
-        editor.setCursor(cursor);
+        
           
       }
     };
@@ -284,12 +292,33 @@ doc.whenReady(function () {
   xhttp.open("POST", "/loaddoc", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
-var filename=document.getElementById('filename').value;
+var filenamemode=document.getElementById('filename');
+var filename = filenamemode.options[filenamemode.selectedIndex].value;
 //var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
       }
-      
+
+      function Commit(){
+        
+        var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      console.log("Saved");
+    }
+  };
+  xhttp.open("POST", "/commit", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename+"&user="+user);
+}
+
+            
 function SaveDoc() {
   
   var xhttp = new XMLHttpRequest();
