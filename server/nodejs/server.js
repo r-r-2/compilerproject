@@ -235,8 +235,43 @@ app.post('/code', function (req, res)
    //res.send(req.body.compiler);
 });
 app.post("/loaddoc",function(req,res){
+  console.log("In loaddoc");
   res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
 
+});
+app.post("/commit",function(req,res){
+  console.log("In Commit");
+  console.log(req.body.user+req.body.filename);
+  var exec = require('child_process').exec,
+    child;
+
+child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"add"+" "+req.body.filename,
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file git add");
+   console.log(error);
+ } 
+    else
+      {
+        
+console.log("Sucess");
+child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"commit "+" "+"-m "+" " +"'test'",
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file git commit");
+   console.log(error);
+ } 
+    else
+      {
+        
+console.log("Sucess commit");
+
+}  
+
+  
+});
+ } //res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
+});
 });
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
@@ -286,5 +321,5 @@ else
 });
 
 var server = http.createServer(app);
-server.listen(7007,host);
+//server.listen(7007,host);
 server.listen(7007,"localhost");
