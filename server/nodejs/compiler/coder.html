@@ -23,7 +23,31 @@
 
 // setInterval(run, 3000);
 
+function NewFile() {
+	
 
+//alert(document.getElementById("username").value);
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+     /* if(xhttp.responseText=="sucess")
+      	{
+alert("sucess"):
+
+      	}
+      else
+      	alert("invalid");*/
+
+    }
+  };
+  xhttp.open("POST", "/newfile", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var user=document.getElementById('user').textContent;
+var filename=document.getElementById('fname').value;
+
+xhttp.send("username="+user+"&filename="+filename);
+alert(filename+user);
+}
 </script>
 <form name="myform">
 <select name="filename"id="filename"onchange="LoadDoc()">
@@ -429,8 +453,10 @@ function randomInt(max) {
   return Math.floor(Math.random()*max);
 }
 
+
 </script>
- 
+First name: <input type="text" id="fname"><br>
+<button type="button" onclick="NewFile()">New </button>
     
   
 </body>

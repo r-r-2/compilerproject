@@ -242,6 +242,59 @@ child = exec("script/signup.sh"+" "+username,
 }  
 });
 });
+app.post('/newfile', function (req, res)
+{
+
+ var returnstring="failure";
+  var username=req.body.username;
+var filename=req.body.filename;
+        var foldername=req.body.filename.split(".");
+
+
+
+  console.log("username :"+username+"filename:"+filename+foldername[0]);   
+
+   var exec = require('child_process').exec,
+    child;
+child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
+  function (error, stdout, stderr) {
+    if(error)
+     { 
+     res.send("error folder creation");
+     console.log(error);
+ } 
+    else
+      {
+        
+        res.send("sucess folder creation");
+        child = exec("script/createfile.sh"+" "+username+" "+" "+foldername+" "+"touch"+" "+filename,
+  function (error, stdout, stderr) {
+    if(error)
+     { 
+     res.send("error file creation");
+     console.log(error);
+ } 
+    else
+      {
+        
+        res.send("sucess file creation");
+      
+      
+   
+
+
+}  
+});
+
+      
+      
+   
+
+
+}  
+});
+
+});
 
 app.post('/code', function (req, res)
 {
