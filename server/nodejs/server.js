@@ -167,7 +167,7 @@ app.post('/filelist', function (req, res)
    var exec = require('child_process').exec,
     child;
 
-child = exec("script/compiler.sh"+" "+username+" "+"ls",
+child = exec("script/filelist.sh"+" "+username+" ",
   function (error, stdout, stderr) {
     if(error)
      { res.send("error file list");
@@ -256,18 +256,8 @@ var filename=req.body.filename;
 
    var exec = require('child_process').exec,
     child;
-child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
-  function (error, stdout, stderr) {
-    if(error)
-     { 
-     res.send("error folder creation");
-     console.log(error);
- } 
-    else
-      {
-        
-        res.send("sucess folder creation");
-        child = exec("script/createfile.sh"+" "+username+" "+" "+foldername+" "+"touch"+" "+filename,
+
+child = exec("script/createfile.sh"+" "+username+" "+" "+foldername[0]+" "+filename,
   function (error, stdout, stderr) {
     if(error)
      { 
@@ -283,8 +273,6 @@ child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
    
 
 
-}  
-});
 
       
       
@@ -314,7 +302,8 @@ app.post('/code', function (req, res)
 });
 app.post("/loaddoc",function(req,res){
   console.log("In loaddoc");
-  res.sendFile("/home/nis/Desktop/gh/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
+var foldername=req.body.filename.split('.');
+  res.sendFile("/home/nis/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+foldername[0]+"/"+req.body.filename);
 
 });
 app.post("/commit",function(req,res){

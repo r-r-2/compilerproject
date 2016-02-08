@@ -1,2 +1,5 @@
-cd /home/nis/Desktop/compilerproject/server/nodejs/$1/$2
-$3 $4 $5
+cd /home/nis/Desktop/compilerproject/server/nodejs/$1
+mkdir $2
+cd $2
+touch $3 
+git init
