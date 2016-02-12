@@ -227,7 +227,7 @@ var run = function(){
 <script>
        
             // get the textarea element 
-
+LoadDoc();
         
      //setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
      var inputlang = document.getElementById("selectlang");
@@ -312,6 +312,7 @@ doc.whenReady(function () {
           
       }
     };
+ 
   
   
   xhttp.open("POST", "/loaddoc", true);
@@ -323,8 +324,30 @@ var filename = filenamemode.options[filenamemode.selectedIndex].value;
 var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
       }
+ function CommitName(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    alert("here");  
+LoadDoc();
+          
+        
+    }
+  };
+  xhttp.open("POST", "/revert", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var user=document.getElementById('user').textContent;
+var filename=document.getElementById('filename').value;
+alert(filename);
 
-      function Commit(){
+var filenamemode=document.getElementById('commitname');
+var commitinfo = filenamemode.options[filenamemode.selectedIndex].value;
+var commitname=commitinfo.split(" ");
+
+xhttp.send("username="+user+" "+"&filename="+filename+"&commitid="+commitname[0]);
+
+}
+function Commit(){
         
         var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -343,9 +366,10 @@ var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
 }
 
+
    function Undo(){
         
-        var xhttp = new XMLHttpRequest();
+        /*var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
 var commitids=xhttp.responseText.split(" ");
@@ -361,6 +385,35 @@ var filename=document.getElementById('filename').value;
 var user=document.getElementById('user').textContent;
 
   xhttp.send("filename="+filename+"&user="+user);
+*/
+alert("here");
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
+}
+          
+        
+    }
+  };
+  xhttp.open("POST", "/undo", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename1+"&user="+user);
+
+//xhttp.send("username="+username[1]);
+
 }
          
 function SaveDoc() {
@@ -455,9 +508,13 @@ function randomInt(max) {
 
 
 </script>
-First name: <input type="text" id="fname"><br>
+Filename: <input type="text" id="fname"><br>
 <button type="button" onclick="NewFile()">New </button>
-    
+<form name="commitform">
+  <select name="commit"id="commitname"onchange="CommitName()">
+</select>
+</form>
+   
   
 </body>
 </html>
