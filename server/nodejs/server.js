@@ -8,6 +8,7 @@ var sharejs = require('share');
 var mysql = require("mysql");
 var bodyParser = require('body-parser')
 var fs = require("fs");
+var session = require('express-session');
 var backend = livedb.client(livedb.memory());
 var share = sharejs.server.createClient({backend: backend});
 
@@ -17,6 +18,7 @@ var favicon = require('serve-favicon');
 var app = express();
 app.use(favicon('./favicon.ico'));
 app.use(express.static(__dirname));
+app.use(session({secret: 'ssshhhhh'}));
 //app.use(express.static(shareCodeMirror.scriptsDir));
 app.use(express.static(__dirname + '/../node_modules/codemirror/lib'));
 app.use(express.static(sharejs.scriptsDir));
@@ -96,6 +98,7 @@ Object.keys(ifaces).forEach(function (ifname) {
       // this interface has only one ipv4 adress
       console.log(ifname, iface.address);
       host=iface.address;
+     
     }
     ++alias;
   });
@@ -128,6 +131,9 @@ app.get('/icontest', function(req,res) {
 app.post('/login', function (req, res)
 {
   console.log("here");
+sess=req.session;
+sess.email=req.body.username;
+console.log("username:"+sess.email);
  var returnstring="failure";
   var username=req.body.username;
    var password=req.body.password;
@@ -159,6 +165,10 @@ console.log(password+","+rows[0].password)
 
 app.post('/filelist', function (req, res)
 {
+ sess=req.session;
+console.log("email"+sess.email);
+if(sess.email)
+{
 
  var returnstring="failure";
   var username=req.body.username;
@@ -179,6 +189,9 @@ child = exec("script/filelist.sh"+" "+username+" ",
         res.send(stdout);
 }  
 });
+}
+else
+console.log("Not logged in");
 });
 
 app.post('/undo', function (req, res)
@@ -283,6 +296,42 @@ child = exec("script/createfile.sh"+" "+username+" "+" "+foldername[0]+" "+filen
 });
 
 });
+app.post('/share', function (req, res)
+{
+  console.log("Entered Sharing ");
+var exec = require('child_process').exec,
+    child,child2;
+var sharedfoldername="group1",shareduser="rahul";
+var filename2=req.body.filename.split('.');
+child = exec("script/signup.sh"+" "+sharedfoldername+" "+"mv"+" "+req.body.user+"/"+filename2[0]+" "+sharedfoldername+"/"
+,
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file creation");
+   console.log(error);
+ } 
+    else
+      {
+
+
+
+        fs.appendFileSync(req.body.user+"/"+"sharedetails.json", req.body.details);
+ fs.appendFile(shareduser+"/"+"sharedetails.json", req.body.details,function(err){
+    if (err) {
+      console.log("Error Writing to file");
+      throw err;
+    }
+
+     res.send("Sucess");
+ 
+      
+  });
+
+
+}  
+});
+
+   });
 
 app.post('/code', function (req, res)
 {
@@ -414,5 +463,6 @@ else
 });
 
 var server = http.createServer(app);
+
 //server.listen(7007,host);
 server.listen(7007,"localhost");

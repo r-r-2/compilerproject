@@ -223,6 +223,7 @@ var run = function(){
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
 <button type="button" onclick="Commit()">Commit</button>
 <button type="button" onclick="Undo()">Undo</button>
+<button type="button" onclick="Share()">Share</button>
 <div id="demo"><h2></h2></div>
 <script>
        
@@ -265,7 +266,11 @@ LoadDoc();
         });
 var s = new BCSocket(null, {reconnect: true});
 var sjs = new window.sharejs.Connection(s);
-var doc = sjs.get('users', 'sephx');
+var user=document.getElementById('user').textContent;
+if(user=="suraj")
+var doc = sjs.get('suraj', 'hello');
+else
+var doc = sjs.get('rahul', 'hello');
 
 doc.subscribe();
 doc.whenReady(function () {
@@ -415,7 +420,39 @@ var user=document.getElementById('user').textContent;
 //xhttp.send("username="+username[1]);
 
 }
-         
+   function Share(){
+        
+       
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
+}
+          
+        
+    }
+  };
+  xhttp.open("POST", "/share", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+var shareduser="rahul";
+var text = '{ "Group":"group1" }';
+xhttp.send("user="+user+"&details="+text+"&filename="+filename1);
+
+
+
+}       
 function SaveDoc() {
   
   var xhttp = new XMLHttpRequest();
