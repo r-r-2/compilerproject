@@ -24,19 +24,19 @@
 // setInterval(run, 3000);
 
 function NewFile() {
-	
+  
 
 //alert(document.getElementById("username").value);
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
      /* if(xhttp.responseText=="sucess")
-      	{
+        {
 alert("sucess"):
 
-      	}
+        }
       else
-      	alert("invalid");*/
+        alert("invalid");*/
 
     }
   };
@@ -56,6 +56,95 @@ alert(filename+user);
 
     <label id="user"></label>
     <script type="text/javascript">
+    var counter=0;
+    var sharedjson=[];
+ function searchJSONArray (str) {
+    for (var j=0; j<sharedjson.length; j++) {
+        if (sharedjson[j].filename.match(str)) return j;
+    }
+    return -1;
+} 
+function LoadDoc(){
+//   	if(user=="suraj")
+// { doc = sjs.get('suraj', "hello");
+// }
+// else
+//  doc = sjs.get("suraj","hai");
+// doc.subscribe();
+// doc.whenReady(function () {
+//   if (!doc.type) {
+//     doc.create('text');
+//   }
+//   if (doc.type && doc.type.name === 'text') {
+//     doc.attachCodeMirror(editor);
+//   }
+// });
+       
+       var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+       if (xhttp.readyState == 4 && xhttp.status == 200) {
+       	alert("inisde");
+         //var r=searchStringInArray(filename);
+       /* if(r!=-1){
+        	alert("inside");
+        	
+        	doc.del();
+        	alert(subscribedfiles[r]);
+        	subscribedfiles[r]="e";
+
+        }
+         editor.setValue(xhttp.responseText);
+         //setEditor();
+
+         
+         subscribedfiles[length++]=filename;
+         alert(subscribedfiles.length);
+         */
+          if(counter>0)
+         {
+         	editor.detachShareJsDoc()
+          	//doc.detachShareJsDoc();
+         // 	//doc.destroy();
+          }
+         
+          doc = sjs.get(user,filename);
+doc.subscribe();
+doc.whenReady(function () {
+  if (!doc.type) {
+    doc.create('text');
+  }
+  if (doc.type && doc.type.name === 'text') {
+    doc.attachCodeMirror(editor);
+    counter++;
+  }
+});
+ 
+
+          
+        
+          
+      
+  }
+    };
+ 
+   var filenamemode=document.getElementById('filename');
+var filename = filenamemode.options[filenamemode.selectedIndex].value;
+
+var user=document.getElementById('user').textContent;
+var ret=searchJSONArray(filename);
+alert(ret);
+if(ret!=-1)
+  user=sharedjson[ret].Group;
+
+//var compiler=document.getElementById('compiler').value;
+  
+  xhttp.open("POST", "/loaddoc", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("filename="+filename+"&user="+user)
+alert(filename+user);
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+      }
+
 var url =document.URL;
 var username=url.split('=');
 document.getElementById('user').innerHTML = username[1];
@@ -63,13 +152,25 @@ var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       
-          var filenames=xhttp.responseText.split("\n");
           
+          var filedetail=xhttp.responseText.split("shareddetails");
+          var filenames=filedetail[0].split("\n");
+          var sharedjson1=filedetail[1].split("$");
+
+           
+          for(var j=0;j<sharedjson1.length-1;j++)
+          {
+             sharedjson[j]=JSON.parse(sharedjson1[j]);
+             filenames[filenames.length+j]=sharedjson[j].filename;
+
+           }
           var master=document.myform.filename; 
           for (i=0; i<filenames.length-1; i++){
     master.options[master.options.length]=new Option(filenames[i],filenames[i],false,false);
+    
 }
-          
+     LoadDoc();
+     
         
     }
   };
@@ -78,6 +179,7 @@ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 
 xhttp.send("username="+username[1]);
+
     </script>
    
        <link rel="stylesheet" href="theme/3024-day.css">
@@ -145,14 +247,11 @@ xhttp.send("username="+username[1]);
 <link rel="stylesheet" href="themes/offline-language-english.css" />
 
 <script>
-var run = function(){
-  var req = new XMLHttpRequest();
-  req.timeout = 5000;
-  req.open('GET', 'http://localhost:7007', true);
-  req.send();
-}
+var i=1;
+ var s = new BCSocket(null, {reconnect: true});
+var sjs = new window.sharejs.Connection(s);
+var doc;
 
-//setInterval(run, 3000);
 </script>
 
 
@@ -223,11 +322,11 @@ var run = function(){
 <button type="button" onclick="CompileExecute()">Compile & Execute</button>
 <button type="button" onclick="Commit()">Commit</button>
 <button type="button" onclick="Undo()">Undo</button>
+<button type="button" onclick="Share()">Share</button>
 <div id="demo"><h2></h2></div>
 <script>
        
             // get the textarea element 
-
         
      //setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
      var inputlang = document.getElementById("selectlang");
@@ -263,17 +362,7 @@ var run = function(){
         }
       }
         });
-var s = new BCSocket(null, {reconnect: true});
-var sjs = new window.sharejs.Connection(s);
-var doc = sjs.get('users', 'sephx');
 
-doc.subscribe();
-doc.whenReady(function () {
-  if (!doc.type) doc.create('text');
-  if (doc.type && doc.type.name === 'text') {
-    doc.attachCodeMirror(editor);
-  }
-});
 
 
 
@@ -300,31 +389,58 @@ doc.whenReady(function () {
 
          var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
       CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
-  function LoadDoc(){
+     
+//var foldername=filename.split(".");
+
+// if(user=="suraj")
+// { doc = sjs.get('suraj', "hello");
+// }
+// else
+//  doc = sjs.get("suraj","hai");
+// doc.subscribe();
+// doc.whenReady(function () {
+//   if (!doc.type) {
+//     doc.create('text');
+//   }
+//   if (doc.type && doc.type.name === 'text') {
+//     doc.attachCodeMirror(editor);
+//   }
+// });
        
-       var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-       if (xhttp.readyState == 4 && xhttp.status == 200) {
-         
-         editor.setValue(xhttp.responseText);
+    var subscribedfiles=[];
+
+    function searchStringInArray (str) {
+    for (var j=0; j<subscribedfiles.length; j++) {
+        if (subscribedfiles[j].match(str)) return j;
+    }
+    return -1;
+} 
+  
+ function CommitName(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    alert("here");  
+LoadDoc();
           
         
-          
-      }
-    };
-  
-  
-  xhttp.open("POST", "/loaddoc", true);
+    }
+  };
+  xhttp.open("POST", "/revert", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
- //xhttp.setRequestHeader("Content-type", "/compileandexecute");
-var filenamemode=document.getElementById('filename');
-var filename = filenamemode.options[filenamemode.selectedIndex].value;
-//var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').textContent;
-  xhttp.send("filename="+filename+"&user="+user);
-      }
+var filename=document.getElementById('filename').value;
+alert(filename);
 
-      function Commit(){
+var filenamemode=document.getElementById('commitname');
+var commitinfo = filenamemode.options[filenamemode.selectedIndex].value;
+var commitname=commitinfo.split(" ");
+
+xhttp.send("username="+user+" "+"&filename="+filename+"&commitid="+commitname[0]);
+
+
+}
+function Commit(){
         
         var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -343,9 +459,10 @@ var user=document.getElementById('user').textContent;
   xhttp.send("filename="+filename+"&user="+user);
 }
 
+
    function Undo(){
         
-        var xhttp = new XMLHttpRequest();
+        /*var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
 var commitids=xhttp.responseText.split(" ");
@@ -361,8 +478,68 @@ var filename=document.getElementById('filename').value;
 var user=document.getElementById('user').textContent;
 
   xhttp.send("filename="+filename+"&user="+user);
+*/
+alert("here");
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
 }
-         
+          
+        
+    }
+  };
+  xhttp.open("POST", "/undo", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename1+"&user="+user);
+
+//xhttp.send("username="+username[1]);
+
+}
+   function Share(){
+        
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
+}
+          
+        
+    }
+  };
+  xhttp.open("POST", "/share", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+var shareduser="rahul";
+var text = '{ "Group":"group1","filename":"'+filename1+'" }$';
+xhttp.send("user="+user+"&details="+text+"&filename="+filename1);
+
+
+
+}       
 function SaveDoc() {
   
   var xhttp = new XMLHttpRequest();
@@ -423,41 +600,45 @@ var cm = CodeMirror.fromTextArea(elem, {
 });
 
 */
-function monkeyType() {
-  var textLength = cm.getValue().length;
-  var pos = Math.floor(Math.random()*textLength);
-  var from = cm.posFromIndex(pos);
-  var editLength = randomInt(10)
-  if(Math.random() < 0.9) {
-    // Add text
-    var text =  randomString(editLength);
-    cm.replaceRange(text, cm.posFromIndex(pos));
-  } else {
-    var endIndex = Math.max(pos + editLength, textLength-1);
-    var to = cm.posFromIndex(endIndex);
-    cm.replaceRange('', from, to);
-  }
-}
+// function monkeyType() {
+//   var textLength = cm.getValue().length;
+//   var pos = Math.floor(Math.random()*textLength);
+//   var from = cm.posFromIndex(pos);
+//   var editLength = randomInt(10)
+//   if(Math.random() < 0.9) {
+//     // Add text
+//     var text =  randomString(editLength);
+//     cm.replaceRange(text, cm.posFromIndex(pos));
+//   } else {
+//     var endIndex = Math.max(pos + editLength, textLength-1);
+//     var to = cm.posFromIndex(endIndex);
+//     cm.replaceRange('', from, to);
+//   }
+// }
 
-function randomString(len) {
-	var chars = "0123456789\nABCDEF\nGHIJKLM\nNOPQRSTUVWXTZ\nabcde\nfghiklmnop\nqrstuvwxyz";
-	var result = '';
-	for (var i=0; i<len; i++) {
-		var rnum = randomInt(chars.length);
-		result += chars.substring(rnum, rnum+1);
-	}
-  return result;
-}
+// function randomString(len) {
+//   var chars = "0123456789\nABCDEF\nGHIJKLM\nNOPQRSTUVWXTZ\nabcde\nfghiklmnop\nqrstuvwxyz";
+//   var result = '';
+//   for (var i=0; i<len; i++) {
+//     var rnum = randomInt(chars.length);
+//     result += chars.substring(rnum, rnum+1);
+//   }
+//   return result;
+// }
 
-function randomInt(max) {
-  return Math.floor(Math.random()*max);
-}
+// function randomInt(max) {
+//   return Math.floor(Math.random()*max);
+// }
 
 
 </script>
-First name: <input type="text" id="fname"><br>
+Filename: <input type="text" id="fname"><br>
 <button type="button" onclick="NewFile()">New </button>
-    
+<form name="commitform">
+  <select name="commit"id="commitname"onchange="CommitName()">
+</select>
+</form>
+   
   
 </body>
 </html>

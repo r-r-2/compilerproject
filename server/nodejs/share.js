@@ -21,7 +21,6 @@ var emitter = require('./emitter');
  */
 var Connection = exports.Connection = function (socket) {
   emitter.EventEmitter.call(this);
-
   // Map of collection -> docName -> doc object for created documents.
   // (created documents MUST BE UNIQUE)
   this.collections = {};

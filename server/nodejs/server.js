@@ -32,8 +32,10 @@ app.use(browserChannel(function (client) {
   };
   stream.headers = client.headers;
   stream.remoteAddress = stream.address;
+ console.log("Stream address at stream :"+client.headers);
   client.on('message', function (data) {
     stream.push(data);
+
   });
   stream.on('error', function (msg) {
     client.stop();
@@ -43,6 +45,7 @@ app.use(browserChannel(function (client) {
     stream.emit('end');
     stream.end();
   });
+
   return share.listen(stream);
 }));
 var con = mysql.createConnection({
@@ -159,6 +162,10 @@ console.log(password+","+rows[0].password)
 
 app.post('/filelist', function (req, res)
 {
+ //sess=req.session;
+//console.log("email"+sess.email);
+//if(sess.email)
+//{
 
  var returnstring="failure";
   var username=req.body.username;
@@ -167,7 +174,7 @@ app.post('/filelist', function (req, res)
    var exec = require('child_process').exec,
     child;
 
-child = exec("script/compiler.sh"+" "+username+" "+"ls",
+child = exec("script/filelist.sh"+" "+username+" ",
   function (error, stdout, stderr) {
     if(error)
      { res.send("error file list");
@@ -175,11 +182,19 @@ child = exec("script/compiler.sh"+" "+username+" "+"ls",
  } 
     else
       {
-        console.log("List "+stdout);
-        res.send(stdout);
+        var config = fs.readFileSync(req.body.username+"/sharedetails.json");
+
+        res.send(stdout+"\nshareddetails"+config);
 }  
 });
+//}
+//else
+//console.log("Not logged in");
 });
+
+
+
+
 
 app.post('/undo', function (req, res)
 {
@@ -256,18 +271,8 @@ var filename=req.body.filename;
 
    var exec = require('child_process').exec,
     child;
-child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
-  function (error, stdout, stderr) {
-    if(error)
-     { 
-     res.send("error folder creation");
-     console.log(error);
- } 
-    else
-      {
-        
-        res.send("sucess folder creation");
-        child = exec("script/createfile.sh"+" "+username+" "+" "+foldername+" "+"touch"+" "+filename,
+
+child = exec("script/createfile.sh"+" "+username+" "+" "+foldername[0]+" "+filename,
   function (error, stdout, stderr) {
     if(error)
      { 
@@ -283,8 +288,6 @@ child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
    
 
 
-}  
-});
 
       
       
@@ -294,12 +297,49 @@ child = exec("script/compiler.sh"+" "+username+" "+"mkdir"+" "+foldername[0],
 }  
 });
 
+});app.post('/share', function (req, res)
+{
+  console.log("Entered Sharing ");
+var exec = require('child_process').exec,
+    child,child2;
+var sharedfoldername="group1",shareduser="rahul";
+var filename2=req.body.filename.split('.');
+child = exec("script/signup.sh"+" "+sharedfoldername+" "+"mv"+" "+req.body.user+"/"+filename2[0]+" "+sharedfoldername+"/"
+,
+  function (error, stdout, stderr) {
+    if(error)
+     { res.send("error file creation");
+   console.log(error);
+ } 
+    else
+      {
+
+
+
+        fs.appendFileSync(req.body.user+"/"+"sharedetails.json", req.body.details);
+ fs.appendFile(shareduser+"/"+"sharedetails.json", req.body.details,function(err){
+    if (err) {
+      console.log("Error Writing to file");
+      throw err;
+    }
+
+     res.send("Sucess");
+ 
+      
+  });
+
+
+}  
 });
+
+   });
+
 
 app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
-  fs.writeFile(req.body.user+"/"+req.body.filename, req.body.code,function(err){
+var foldername=req.body.filename.split(".");
+  fs.writeFile(req.body.user+"/"+foldername[0]+"/"+req.body.filename, req.body.code,function(err){
     if (err) {
       console.log("Error Writing to file");
       throw err;
@@ -313,8 +353,9 @@ app.post('/code', function (req, res)
    //res.send(req.body.compiler);
 });
 app.post("/loaddoc",function(req,res){
-  console.log("In loaddoc");
-  res.sendFile("/home/nis/Desktop/gh/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
+  console.log("In loaddoc:::::"+req.body.user+req.body.filename);
+var foldername=req.body.filename.split('.');
+  res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+foldername[0]+"/"+req.body.filename);
 
 });
 app.post("/commit",function(req,res){
