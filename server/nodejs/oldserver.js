@@ -184,13 +184,12 @@ child = exec("script/filelist.sh"+" "+username+" ",
       {
         var config = fs.readFileSync(req.body.username+"/sharedetails.json");
 
-        res.send(stdout+"shareddetails"+config);
+        res.send(stdout+"\nshareddetails"+config);
 }  
 });
 //}
 //else
 //console.log("Not logged in");
-console.log("filelist accessed");
 });
 
 
@@ -202,13 +201,12 @@ app.post('/undo', function (req, res)
 
  var returnstring="failure";
   var username=req.body.user;
-   var filename=req.body.filename;
-        var foldername=req.body.filename.split("."); 
+    
 
    var exec = require('child_process').exec,
     child;
 
-child = exec("script/compiler.sh"+" "+username+" "+" "+foldername[0]+" "+"git"+" "+"log"+" "+"--pretty=oneline",
+child = exec("script/compiler.sh"+" "+username+" "+"git"+" "+"log"+" "+"--pretty=oneline"+" "+req.body.filename,
   function (error, stdout, stderr) {
     if(error)
      { res.send("error file list");
@@ -341,7 +339,6 @@ app.post('/code', function (req, res)
 {
   console.log("Entered Writing ");
 var foldername=req.body.filename.split(".");
-console.log(req.body.user+req.body.filename);
   fs.writeFile(req.body.user+"/"+foldername[0]+"/"+req.body.filename, req.body.code,function(err){
     if (err) {
       console.log("Error Writing to file");
@@ -366,9 +363,8 @@ app.post("/commit",function(req,res){
   console.log(req.body.user+req.body.filename);
   var exec = require('child_process').exec,
     child;
-var foldername=req.body.filename.split(".");
-console.log(foldername[0]);
-child = exec("script/compiler.sh"+" "+req.body.user+" "+foldername[0]+" "+"git"+" "+"add"+" "+"--all",
+
+child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"add"+" "+req.body.filename,
   function (error, stdout, stderr) {
     if(error)
      { res.send("error file git add");
@@ -378,7 +374,7 @@ child = exec("script/compiler.sh"+" "+req.body.user+" "+foldername[0]+" "+"git"+
       {
         
 console.log("Sucess add");
-child = exec("script/compiler.sh"+" "+req.body.user+" "+foldername[0]+" "+"git"+" "+"commit"+" "+"-m"+" " +"'test'",
+child = exec("script/compiler.sh"+" "+req.body.user+" "+"git"+" "+"commit "+" "+"-m "+" " +"'test'",
   function (error, stdout, stderr) {
     if(error)
      { res.send("error file git commit");
@@ -394,30 +390,6 @@ console.log("Sucess commit");
   
 });
  } //res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
-});
-});
-
-app.post("/revert",function(req,res){
-  console.log("In revert");
-  console.log(req.body.user+req.body.filename);
-  var exec = require('child_process').exec,
-    child;
-var foldername=req.body.filename.split(".");
-console.log("folder"+foldername[0]);
-child = exec("script/compiler.sh"+" "+req.body.username+" "+foldername[0]+" "+"git"+" "+"checkout"+" "+req.body.commitid,
-  function (error, stdout, stderr) {
-    if(error)
-     { res.send("error file git checkout");
-   console.log(error);
- } 
-    else
-      {
-        res.send("sucess");
-console.log("Success");
-}  
-
-  
- //res.sendFile("/home/suraj/Desktop/compilerproject/server/nodejs/"+req.body.user+"/"+req.body.filename);
 });
 });
 app.post("/compileandexecute",function(req,res){
@@ -470,4 +442,3 @@ else
 var server = http.createServer(app);
 //server.listen(7007,host);
 server.listen(7007,"localhost");
-	

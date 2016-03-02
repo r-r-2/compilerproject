@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>DASHGUM - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge bg-theme">4</span>
+                        </a>
+                        <ul class="dropdown-menu extended tasks-bar">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 4 pending tasks</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">DashGum Admin Panel</div>
+                                        <div class="percent">40%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                            <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Database Update</div>
+                                        <div class="percent">60%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Product Development</div>
+                                        <div class="percent">80%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <div class="task-info">
+                                        <div class="desc">Payments Sent</div>
+                                        <div class="percent">70%</div>
+                                    </div>
+                                    <div class="progress progress-striped">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                            <span class="sr-only">70% Complete (Important)</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="external">
+                                <a href="#">See All Tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-theme">5</span>
+                        </a>
+                        <ul class="dropdown-menu extended inbox">
+                            <div class="notify-arrow notify-arrow-green"></div>
+                            <li>
+                                <p class="green">You have 5 new messages</p>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Zac Snider</span>
+                                    <span class="time">Just now</span>
+                                    </span>
+                                    <span class="message">
+                                        Hi mate, how is everything?
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Divya Manian</span>
+                                    <span class="time">40 mins.</span>
+                                    </span>
+                                    <span class="message">
+                                     Hi, I need your help with this.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Dan Rogers</span>
+                                    <span class="time">2 hrs.</span>
+                                    </span>
+                                    <span class="message">
+                                        Love your new Dashboard.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">
+                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Dj Sherman</span>
+                                    <span class="time">4 hrs.</span>
+                                    </span>
+                                    <span class="message">
+                                        Please, answer asap.
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html#">See all messages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- inbox dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="login.html">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">Marcel Newman</h5>
+              	  	
+                  <li class="mt">
+                      <a href="index.html">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>UI Elements</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="general.html">General</a></li>
+                          <li><a  href="buttons.html">Buttons</a></li>
+                          <li><a  href="panels.html">Panels</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Components</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="calendar.html">Calendar</a></li>
+                          <li><a  href="gallery.html">Gallery</a></li>
+                          <li><a  href="todo_list.html">Todo List</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a class="active" href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Extra Pages</span>
+                      </a>
+                      <ul class="sub">
+                          <li class="active"><a  href="blank.html">Blank Page</a></li>
+                          <li><a  href="login.html">Login</a></li>
+                          <li><a  href="lock_screen.html">Lock Screen</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Forms</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="form_component.html">Form Components</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-th"></i>
+                          <span>Data Tables</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="basic_table.html">Basic Table</a></li>
+                          <li><a  href="responsive_table.html">Responsive Table</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class=" fa fa-bar-chart-o"></i>
+                          <span>Charts</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="morris.html">Morris</a></li>
+                          <li><a  href="chartjs.html">Chartjs</a></li>
+                      </ul>
+                  </li>
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper site-min-height">
+          	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+          	<div class="row mt">
+          		<div class="col-lg-12">
+              
+<script src="lib/codemirror.js"></script>
+<link rel="stylesheet" href="/codemirror.css">
+
+<script src="/channel/bcsocket.js"></script>
+<script src="/share.js"></script>
+<script src="/share-codemirror.js"></script>
+<script src="../offline/offline.js"></script>
+
+<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
+
+<script>
+// var run = function(){
+//   var req = new XMLHttpRequest();
+//   req.timeout = 5000;
+//   req.open('GET', 'http://localhost:7007', true);
+//   req.send();
+//   alert(Offline.state);
+// }
+
+// setInterval(run, 3000);
+
+var i=1;
+ var s = new BCSocket(null, {reconnect: true});
+var sjs = new window.sharejs.Connection(s);
+var doc;
+
+
+
+function NewFile() {
+  
+
+//alert(document.getElementById("username").value);
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+     /* if(xhttp.responseText=="sucess")
+        {
+alert("sucess"):
+
+        }
+      else
+        alert("invalid");*/
+
+    }
+  };
+  xhttp.open("POST", "/newfile", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var user=document.getElementById('user').textContent;
+var filename=document.getElementById('fname').value;
+
+xhttp.send("username="+user+"&filename="+filename);
+alert(filename+user);
+}
+</script>
+<form name="myform">
+<select name="filename"id="filename"onchange="LoadDoc()">
+ </select>
+ </form>
+
+    <label id="user"></label>
+    <script type="text/javascript">
+    var counter=0;
+    var sharedjson=[];
+ function searchJSONArray (str) {
+    for (var j=0; j<sharedjson.length; j++) {
+        if (sharedjson[j].filename.match(str)) return j;
+    }
+    return -1;
+} 
+function LoadDoc(){
+//    if(user=="suraj")
+// { doc = sjs.get('suraj', "hello");
+// }
+// else
+//  doc = sjs.get("suraj","hai");
+// doc.subscribe();
+// doc.whenReady(function () {
+//   if (!doc.type) {
+//     doc.create('text');
+//   }
+//   if (doc.type && doc.type.name === 'text') {
+//     doc.attachCodeMirror(editor);
+//   }
+// });
+       
+       var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+       if (xhttp.readyState == 4 && xhttp.status == 200) {
+        alert("inisde");
+         //var r=searchStringInArray(filename);
+       /* if(r!=-1){
+          alert("inside");
+          
+          doc.del();
+          alert(subscribedfiles[r]);
+          subscribedfiles[r]="e";
+
+        }
+         editor.setValue(xhttp.responseText);
+         //setEditor();
+
+         
+         subscribedfiles[length++]=filename;
+         alert(subscribedfiles.length);
+         */
+          if(counter>0)
+         {
+          editor.detachShareJsDoc()
+            //doc.detachShareJsDoc();
+         //   //doc.destroy();
+          }
+         
+          doc = sjs.get(user,filename);
+doc.subscribe();
+doc.whenReady(function () {
+  if (!doc.type) {
+    doc.create('text');
+  }
+  if (doc.type && doc.type.name === 'text') {
+    doc.attachCodeMirror(editor);
+         editor.setValue(xhttp.responseText);
+    counter++;
+  }
+});
+ 
+
+          
+        
+          
+      
+  }
+    };
+ 
+   var filenamemode=document.getElementById('filename');
+var filename = filenamemode.options[filenamemode.selectedIndex].value;
+
+var user=document.getElementById('user').textContent;
+var ret=searchJSONArray(filename);
+alert(ret);
+if(ret!=-1)
+  user=sharedjson[ret].Group;
+
+//var compiler=document.getElementById('compiler').value;
+  
+  xhttp.open("POST", "/loaddoc", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("filename="+filename+"&user="+user)
+alert(filename+user);
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+      }
+
+var url =document.URL;
+var username=url.split('=');
+document.getElementById('user').innerHTML = username[1];
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      
+          
+          var filedetail=xhttp.responseText.split("shareddetails");
+          var filenames=filedetail[0].split("\n");
+          var sharedjson1=filedetail[1].split("$");
+
+           
+          for(var j=0;j<sharedjson1.length-1;j++)
+          {
+             sharedjson[j]=JSON.parse(sharedjson1[j]);
+             filenames[filenames.length+j]=sharedjson[j].filename;
+
+           }
+          var master=document.myform.filename; 
+          for (i=0; i<filenames.length-1; i++){
+    master.options[master.options.length]=new Option(filenames[i],filenames[i],false,false);
+    
+}
+     LoadDoc();
+     
+        
+    }
+  };
+  xhttp.open("POST", "/filelist", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+xhttp.send("username="+username[1]);
+
+    </script>
+   
+       <link rel="stylesheet" href="theme/3024-day.css">
+<link rel="stylesheet" href="theme/3024-night.css">
+<link rel="stylesheet" href="theme/abcdef.css">
+<link rel="stylesheet" href="theme/ambiance.css">
+<link rel="stylesheet" href="theme/base16-dark.css">
+<link rel="stylesheet" href="theme/bespin.css">
+<link rel="stylesheet" href="theme/base16-light.css">
+<link rel="stylesheet" href="theme/blackboard.css">
+<link rel="stylesheet" href="theme/cobalt.css">
+<link rel="stylesheet" href="theme/colorforth.css">
+<link rel="stylesheet" href="theme/dracula.css">
+<link rel="stylesheet" href="theme/eclipse.css">
+<link rel="stylesheet" href="theme/elegant.css">
+<link rel="stylesheet" href="theme/erlang-dark.css">
+<link rel="stylesheet" href="theme/hopscotch.css">
+<link rel="stylesheet" href="theme/icecoder.css">
+<link rel="stylesheet" href="theme/isotope.css">
+<link rel="stylesheet" href="theme/lesser-dark.css">
+<link rel="stylesheet" href="theme/liquibyte.css">
+<link rel="stylesheet" href="theme/material.css">
+<link rel="stylesheet" href="theme/mbo.css">
+<link rel="stylesheet" href="theme/mdn-like.css">
+<link rel="stylesheet" href="theme/midnight.css">
+<link rel="stylesheet" href="theme/monokai.css">
+<link rel="stylesheet" href="theme/neat.css">
+<link rel="stylesheet" href="theme/neo.css">
+<link rel="stylesheet" href="theme/night.css">
+<link rel="stylesheet" href="theme/paraiso-dark.css">
+<link rel="stylesheet" href="theme/paraiso-light.css">
+<link rel="stylesheet" href="theme/pastel-on-dark.css">
+<link rel="stylesheet" href="theme/railscasts.css">
+<link rel="stylesheet" href="theme/rubyblue.css">
+<link rel="stylesheet" href="theme/seti.css">
+<link rel="stylesheet" href="theme/solarized.css">
+<link rel="stylesheet" href="theme/the-matrix.css">
+<link rel="stylesheet" href="theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="theme/ttcn.css">
+<link rel="stylesheet" href="theme/twilight.css">
+<link rel="stylesheet" href="theme/vibrant-ink.css">
+<link rel="stylesheet" href="theme/xq-dark.css">
+<link rel="stylesheet" href="theme/xq-light.css">
+<link rel="stylesheet" href="theme/yeti.css">
+<link rel="stylesheet" href="theme/zenburn.css">
+       <link rel="stylesheet" href="addon/display/fullscreen.css">
+<link rel="stylesheet" href="lib/codemirror.css">
+<script src="mode/clike/clike.js"></script>
+<script src="addon/display/fullscreen.js"></script>
+<script src="addon/hint/anyword-hint.js"></script>
+<script src="addon/edit/matchbrackets.js"></script>
+<link rel="stylesheet" href="addon/hint/show-hint.css">
+<script src="addon/hint/show-hint.js"></script>
+<script src="../offline.min.js"></script>
+
+    <style>
+    .CodeMirror {
+        border:1px solid #334;
+        width:800px;
+    }
+</style>
+<body>
+<link rel="stylesheet" href="themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="themes/offline-language-english.css" />
+
+
+
+
+<textarea id="editor" name="code">
+       
+         
+        </textarea>
+        
+       <br>Select a theme: <select onchange="selectTheme()" id=select>
+    <option selected>blackboard</option>
+    <option>3024-day</option>
+    <option>3024-night</option>
+    <option>abcdef</option>
+    <option>ambiance</option>
+    <option>base16-dark</option>
+    <option>base16-light</option>
+    <option>bespin</option>
+    <option>default</option>
+    <option>cobalt</option>
+    <option>colorforth</option>
+    <option>dracula</option>
+    <option>eclipse</option>
+    <option>elegant</option>
+    <option>erlang-dark</option>
+    <option>hopscotch</option>
+    <option>icecoder</option>
+    <option>isotope</option>
+    <option>lesser-dark</option>
+    <option>liquibyte</option>
+    <option>material</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>monokai</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>paraiso-dark</option>
+    <option>paraiso-light</option>
+    <option>pastel-on-dark</option>
+    <option>railscasts</option>
+    <option>rubyblue</option>
+    <option>seti</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option>the-matrix</option>
+    <option>tomorrow-night-bright</option>
+    <option>tomorrow-night-eighties</option>
+    <option>ttcn</option>
+    <option>twilight</option>
+    <option>vibrant-ink</option>
+    <option>xq-dark</option>
+    <option>xq-light</option>
+    <option>yeti</option>
+    <option>zenburn</option>
+</select>
+
+ Select a language: <select  id=selectlang onchange="doall()" >
+        <option value="text/x-csrc" selected>C</option>
+        <option value="text/x-c++src">C++</option>
+       <option value="text/x-java">Java</option>
+       <option value="text/x-python">Python</option>
+       </select>
+       </p>
+   Enter the input:<br><textarea name="input"id="input">
+    1 </textarea><br>
+<button type="button" onclick="SaveDoc()">Save</button>
+<button type="button" onclick="CompileExecute()">Compile & Execute</button>
+<button type="button" onclick="Commit()">Commit</button>
+<button type="button" onclick="Undo()">Undo</button>
+<button type="button" onclick="Share()">Share</button>
+<div id="demo"><h2></h2></div>
+<script>
+       
+            // get the textarea element 
+        
+     //setInterval( function ( ) { SaveDoc(); LoadDoc(); }, 10000 );
+     var inputlang = document.getElementById("selectlang");
+
+ 
+    var mode = inputlang.options[inputlang.selectedIndex].value;
+    function doall(){
+       inputlang = document.getElementById("selectlang");
+
+ 
+     mode = inputlang.options[inputlang.selectedIndex].value;
+     this.editor.setOption("mode", mode);
+      
+    }
+   var inputeditor=CodeMirror.fromTextArea(document.getElementById("input"),{
+    lineNumbers:true
+   });
+   inputeditor.setSize(250,130);
+        editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            lineNumbers: true,
+            matchBrackets: true,
+
+            mode:  mode,
+            
+              extraKeys: {
+        
+        "F11": function(cm) {
+          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+        },
+        "Esc": function(cm) {
+          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+
+        }
+      }
+        });
+
+
+
+
+         var input = document.getElementById("select");
+  function selectTheme() {
+    var theme = input.options[input.selectedIndex].textContent;
+    editor.setOption("theme", theme);
+    inputeditor.setOption("theme",theme);
+    location.hash = "#" + theme;
+  }
+  var choice = (location.hash && location.hash.slice(1)) ||
+               (document.location.search &&
+                decodeURIComponent(document.location.search.slice(1)));
+  if (choice) {
+    input.value = choice;
+    editor.setOption("theme", choice);
+    inputeditor.setOption("theme",choice);
+  }
+  CodeMirror.on(window, "hashchange", function() {
+    var theme = location.hash.slice(1);
+    if (theme) { input.value = theme; selectTheme(); }
+  });
+
+
+         var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
+      CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";
+     
+//var foldername=filename.split(".");
+
+// if(user=="suraj")
+// { doc = sjs.get('suraj', "hello");
+// }
+// else
+//  doc = sjs.get("suraj","hai");
+// doc.subscribe();
+// doc.whenReady(function () {
+//   if (!doc.type) {
+//     doc.create('text');
+//   }
+//   if (doc.type && doc.type.name === 'text') {
+//     doc.attachCodeMirror(editor);
+//   }
+// });
+       
+    var subscribedfiles=[];
+
+    function searchStringInArray (str) {
+    for (var j=0; j<subscribedfiles.length; j++) {
+        if (subscribedfiles[j].match(str)) return j;
+    }
+    return -1;
+} 
+  
+ function CommitName(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+    alert("here");  
+LoadDoc();
+          
+        
+    }
+  };
+  xhttp.open("POST", "/revert", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+var user=document.getElementById('user').textContent;
+var filename=document.getElementById('filename').value;
+alert(filename);
+
+var filenamemode=document.getElementById('commitname');
+var commitinfo = filenamemode.options[filenamemode.selectedIndex].value;
+var commitname=commitinfo.split(" ");
+
+xhttp.send("username="+user+" "+"&filename="+filename+"&commitid="+commitname[0]);
+
+
+}
+function Commit(){
+        
+        var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      console.log("Saved");
+    }
+  };
+  xhttp.open("POST", "/commit", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename+"&user="+user);
+}
+
+
+   function Undo(){
+        
+        /*var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+var commitids=xhttp.responseText.split(" ");
+      alert(commitids[0]);
+    }
+  };
+  xhttp.open("POST", "/undo", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename+"&user="+user);
+*/
+alert("here");
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
+}
+          
+        
+    }
+  };
+  xhttp.open("POST", "/undo", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+
+  xhttp.send("filename="+filename1+"&user="+user);
+
+//xhttp.send("username="+username[1]);
+
+}
+   function Share(){
+        
+
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      alert(xhttp.responseText);
+          var filenames=xhttp.responseText.split("\n");
+
+          var master=document.commitform.commitname; 
+master.options.length = 0;
+          for (i=0; i<filenames.length-1; i++){
+    master.options[i]=new Option(filenames[i],filenames[i],false,false);
+}
+          
+        
+    }
+  };
+  xhttp.open("POST", "/share", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+var filename1=document.getElementById('filename').value;
+
+
+var user=document.getElementById('user').textContent;
+var shareduser="rahul";
+var text = '{ "Group":"group1","filename":"'+filename1+'" }$';
+xhttp.send("user="+user+"&details="+text+"&filename="+filename1);
+
+
+
+}       
+function SaveDoc() {
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      console.log("Saved");
+    }
+  };
+  xhttp.open("POST", "/code", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+var compiler;
+
+
+var user=document.getElementById('user').textContent;
+var code=editor.getValue();
+code= encodeURIComponent(code);
+
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&code="+code);
+}
+function CompileExecute(){
+var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      document.getElementById("demo").innerHTML = xhttp.responseText;
+      inputeditor.setValue(xhttp.responseText);
+    }
+  };
+  
+  if(mode=="text/x-csrc")
+ compiler="gcc";
+else if(mode=="text/x-c++src")
+  compiler="g++";
+else if(mode=="text/x-java")
+  compiler="javac";
+else if(mode=="text/x-python")
+  compiler="python";
+  xhttp.open("POST", "/compileandexecute", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ //xhttp.setRequestHeader("Content-type", "/compileandexecute");
+var filename=document.getElementById('filename').value;
+//var compiler=document.getElementById('compiler').value;
+var user=document.getElementById('user').textContent;
+var input=document.getElementById('input').value;
+input=encodeURIComponent(input);
+  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
+}
+console.log("hi");
+           
+      
+    </script>
+
+<script>
+/*var elem = document.getElementById('editor');
+var cm = CodeMirror.fromTextArea(elem, {
+  mode: "text/plain"
+});
+
+*/
+// function monkeyType() {
+//   var textLength = cm.getValue().length;
+//   var pos = Math.floor(Math.random()*textLength);
+//   var from = cm.posFromIndex(pos);
+//   var editLength = randomInt(10)
+//   if(Math.random() < 0.9) {
+//     // Add text
+//     var text =  randomString(editLength);
+//     cm.replaceRange(text, cm.posFromIndex(pos));
+//   } else {
+//     var endIndex = Math.max(pos + editLength, textLength-1);
+//     var to = cm.posFromIndex(endIndex);
+//     cm.replaceRange('', from, to);
+//   }
+// }
+
+// function randomString(len) {
+//   var chars = "0123456789\nABCDEF\nGHIJKLM\nNOPQRSTUVWXTZ\nabcde\nfghiklmnop\nqrstuvwxyz";
+//   var result = '';
+//   for (var i=0; i<len; i++) {
+//     var rnum = randomInt(chars.length);
+//     result += chars.substring(rnum, rnum+1);
+//   }
+//   return result;
+// }
+
+// function randomInt(max) {
+//   return Math.floor(Math.random()*max);
+// }
+
+
+</script>
+Filename: <input type="text" id="fname"><br>
+<button type="button" onclick="NewFile()">New </button>
+<form name="commitform">
+  <select name="commit"id="commitname"onchange="CommitName()">
+</select>
+</form>
+          		<p>Place your content here.</p>
+          		</div>
+          	</div>
+			
+		</section><! --/wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              2014 - Alvarez.is
+              <a href="blank.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    
+  <script>
+      //custom select box
+
+      $(function(){
+          $('select.styled').customSelect();
+      });
+
+  </script>
+
+  </body>
+</html>
