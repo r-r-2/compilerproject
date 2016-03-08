@@ -1,2 +1,6 @@
-hey
-  wasssup mankjhjg
+#include<stdio.h>
+void main()
+{
+ printf("wassuppp");
+}
+

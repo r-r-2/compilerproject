@@ -422,12 +422,14 @@ console.log("Success");
 });
 app.post("/compileandexecute",function(req,res){
   //res.send("got a request"+req.params.compiler+" "+req.params.userId);
-      console.log(" Entered compile and execute");  
-fs.writeFileSync(req.body.user+"/a.in", req.body.input);
+      console.log(" Entered compile and execute"+req.body.filename);  
+      var foldername=req.body.filename.split(".");
+
+fs.writeFileSync(req.body.user+"/"+foldername[0]+"/a.in", req.body.input);
     var exec = require('child_process').exec,
     child;
 
-child = exec(location_compiler+" "+req.body.user+" "+ req.body.compiler+' '+req.body.filename,
+child = exec(location_compiler+" "+req.body.user+" "+foldername[0]+" "+req.body.compiler+" "+req.body.filename,
   function (error, stdout, stderr) {
     //console.log('stdout: '+ stdout);
  if(stderr=="")
@@ -446,7 +448,7 @@ child = exec(location_compiler+" "+req.body.user+" "+ req.body.compiler+' '+req.
         outputfile=filename[0];
     }
        inputfile="a.in"
-    child = exec('script/execute.sh'+" "+req.body.user+" "+" "+req.body.compiler+" "+outputfile+" "+inputfile ,
+    child = exec('script/execute.sh'+" "+req.body.user+" "+foldername[0]+" "+req.body.compiler+" "+outputfile+" "+inputfile ,
   function (error, stdout, stderr) {
     //console.log('stdout: '+ stdout);
  if(stderr=="")

@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="assets/js/chart-master/Chart.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -205,12 +205,18 @@
 
               	  <h5 class="centered"id="user">Marcel Newman</h5>
               	  <script>
+                  var sharedjson=[];
                 var url =document.URL;
 var username=url.split('=');
 document.getElementById('user').innerHTML = username[1];
+function loadpage(page){
+  alert("inside");
+  window.location.href = page+"?username="+username[1];
+
+}
 </script>
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a class="active" href="javascript:loadpage('index.html');">
                           <i class="fa fa-dashboard"></i>
                           <span>Dashboard</span>
                       </a>
@@ -226,27 +232,29 @@ document.getElementById('user').innerHTML = username[1];
                       <ul class="sub"id ="ownedfilelist">
                           </ul>
                <script>
-   
+   var globalfilename;
+   var counter=0;
 
+function check(file){
+$('#c').load('coder.html');
 
+globalfilename=file;
+}
 
-
+var sharedjson1;
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       
-          var sharedjson=[];
+          
           var filedetail=xhttp.responseText.split("shareddetails");
-          var filenames=filedetail[0].split("\n");
-          var sharedjson1=filedetail[1].split("$");
 
-           
-          for(var j=0;j<sharedjson1.length-1;j++)
-          {
-             sharedjson[j]=JSON.parse(sharedjson1[j]);
-             filenames[filenames.length+j]=sharedjson[j].filename;
+                    var filenames=filedetail[0].split("\n");
+                    sharedjson1=filedetail[1].split("$");
 
-           }
+                    
+                    
+                    
 
           for (i=0; i<filenames.length-1; i++){
    // master.options[master.options.length]=new Option(filenames[i],filenames[i],false,false);
@@ -254,7 +262,8 @@ var a = document.createElement("a");
 var numberList = document.getElementById("ownedfilelist");
 var newNumberListItem = document.createElement("li");
 a.textContent = filenames[i];
-a.setAttribute('href', "coder.html");
+
+a.setAttribute('href', "javascript:check('"+filenames[i]+"');");
 newNumberListItem.appendChild(a);
                     //create new text node
            // var numberListValue = document.createTextNode(filenames[i]);
@@ -267,11 +276,12 @@ newNumberListItem.appendChild(a);
             numberList.appendChild(newNumberListItem);
 
     
-}
+
 
      
         
     }
+  }
   };
   xhttp.open("POST", "/filelist", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -285,13 +295,27 @@ xhttp.send("username="+username[1]);
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
-                          <span>Components</span>
+                          <span>Shared Files</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
+                      <ul class="sub"id="sharedfiles">
+                          
                       </ul>
+                      <script type="text/javascript">
+                      alert("here");
+                        for(var j=0;j<(sharedjson1.length-1);j++) {
+
+                          sharedjson[j]=JSON.parse(sharedjson1[j]);
+                          var a = document.createElement("a");
+                          var numberList = document.getElementById("sharedfiles");
+                          var newNumberListItem = document.createElement("li");
+                          a.textContent = sharedjson[j].filename;
+                          a.setAttribute('href', "javascript:check('"+sharedjson[j].filename+"');");
+                          newNumberListItem.appendChild(a);
+                           numberList.appendChild(newNumberListItem);
+
+                     
+                    }
+                      </script>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -344,6 +368,8 @@ xhttp.send("username="+username[1]);
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
+     
+      <div id="c">
       <section id="main-content">
           <section class="wrapper">
 
@@ -711,7 +737,8 @@ xhttp.send("username="+username[1]);
               </div><! --/row -->
           </section>
       </section>
-
+<div id="ff">
+</div>
       <!--main content end-->
       <!--footer start-->
       <footer class="site-footer">
@@ -743,27 +770,32 @@ xhttp.send("username="+username[1]);
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
+	<script src="assets/js/zabuto_calendar.js"></script>
 	
 	<script type="text/javascript">
         $(document).ready(function () {
-        var unique_id = $.gritter.add({
+        
+
+        return false;
+        });
+        function notif(message)
+        {
+          var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
-            title: 'Welcome to Dashgum!',
+            title: 'Hello '+username[1],
             // (string | mandatory) the text inside the notification
-            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
+            text: message,
             // (string | optional) the image to display on the left
-            image: 'assets/img/ui-sam.jpg',
+            image: '',
             // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
+            sticky: false,
             // (int | optional) the time you want it to be alive for before fading out
             time: '',
             // (string | optional) the class name you want to apply to that specific message
             class_name: 'my-sticky-class'
         });
-
-        return false;
-        });
+        }
+       
 	</script>
 	
 	<script type="application/javascript">
@@ -800,7 +832,7 @@ xhttp.send("username="+username[1]);
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-  
+  </div>
 
   </body>
 </html>

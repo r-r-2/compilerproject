@@ -1,10 +1,10 @@
-cd /home/suraj/Desktop/compilerproject/server/nodejs/$1
+cd /home/suraj/Desktop/compilerproject/server/nodejs/$1/$2
  
-if [ $2 = "javac" ]; then
-               java $3 < $4
+if [ $3 = "javac" ]; then
+               java $4 < $5
 
 else
-	$3 < $4
+	$4 < $5
 
 
             fi

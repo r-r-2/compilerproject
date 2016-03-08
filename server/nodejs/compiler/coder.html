@@ -1,327 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+<script src="lib/codemirror.js"></script>
+<link rel="stylesheet" href="/codemirror.css">
+<link rel="stylesheet" href="css/co.css">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+<script src="/channel/bcsocket.js"></script>
+<script src="/share.js"></script>
+<script src="/share-codemirror.js"></script>
+<script src="../offline/offline.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-        
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
+<link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+<script type="text/javascript">
+/* 
+Variable Intializations
+*/
 
-  <body>
+//var filename=urlobjects[2].split("=");
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-            <!--logo start-->
-            <a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
-            <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
-                <ul class="nav top-menu">
-                    <!-- settings start -->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-tasks"></i>
-                            <span class="badge bg-theme">4</span>
-                        </a>
-                        <ul class="dropdown-menu extended tasks-bar">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">You have 4 pending tasks</p>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">DashGum Admin Panel</div>
-                                        <div class="percent">40%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Database Update</div>
-                                        <div class="percent">60%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Product Development</div>
-                                        <div class="percent">80%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <div class="task-info">
-                                        <div class="desc">Payments Sent</div>
-                                        <div class="percent">70%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                                            <span class="sr-only">70% Complete (Important)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="external">
-                                <a href="#">See All Tasks</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
-                    <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-theme">5</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Zac Snider</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Divya Manian</span>
-                                    <span class="time">40 mins.</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, I need your help with this.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dan Rogers</span>
-                                    <span class="time">2 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Love your new Dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dj Sherman</span>
-                                    <span class="time">4 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Please, answer asap.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html#">See all messages</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- inbox dropdown end -->
-                </ul>
-                <!--  notification end -->
-            </div>
-            <div class="top-menu">
-              <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">Logout</a></li>
-              </ul>
-            </div>
-        </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered"id="user"></h5>
-                      <script>
-                       var url =document.URL;
-                        var username=url.split('=');
-                        document.getElementById('user').innerHTML = username[1];
-                      </script> 
-                    
-                  <li class="mt">
-                      <a href="index.html">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
-                          <span>File List</span>
-                      </a>
-
-                      <ul class="sub"id="ownedfilelist">
-                          
-                      </ul>
-                  </li>
-
-                  <script>
-                  var sharedjson=[];
-
- var xhttp = new XMLHttpRequest();
-                  xhttp.onreadystatechange = function() {
-                  if (xhttp.readyState == 4 && xhttp.status == 200) {      
-                    
-
-                    var filedetail=xhttp.responseText.split("shareddetails");
-                    alert(filedetail);
-                    var filenames=filedetail[0].split("\n");
-                    var sharedjson1=filedetail[1].split("$");
-                    var length=filenames.length; 
-                    alert(length); 
-                    for(var j=0;j<(sharedjson1.length-1);j++) {
-
-                     sharedjson[j]=JSON.parse(sharedjson1[j]);
-                     filenames[j+length]=sharedjson[j].filename;
-                     alert("counter"+j);
-                    }
-                    for (var k=0; k<filenames.length-1; k++){
-                      alert("with k"+k+filenames[k]);
-                    }
-                    for (i=0; i<filenames.length-1; i++){
-                     // master.options[master.options.length]=new Option(filenames[i],filenames[i],false,false);
-                      var a = document.createElement("a");
-                      var numberList = document.getElementById("ownedfilelist");
-                      var newNumberListItem = document.createElement("li");
-                      a.textContent = filenames[i];
-                      a.setAttribute('href', "javascript:LoadDoc('"+filenames[i]+"');");
-                      alert("list"+filenames[i]);
-                      newNumberListItem.appendChild(a);
-                      //create new text node
-                      // var numberListValue = document.createTextNode(filenames[i]);
-
-                      //add text node to li element
-                      //newNumberListItem.appendChild(numberListValue);
-                      //newNumberListItem.appendchild(ahrefListItem);
-                       //add new list element built in previous steps to unordered list
-                      //called numberList
-                     numberList.appendChild(newNumberListItem);    
-                    }     
-        
-                  }
-                };
-              xhttp.open("POST", "/filelist", true);
-             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-
-            xhttp.send("username="+username[1]);
-
-
-
-
-                  function LoadDoc(filename=""){
-//    if(user=="suraj")
-// { doc = sjs.get('suraj', "hello");
-// }
-// else
-//  doc = sjs.get("suraj","hai");
-// doc.subscribe();
-// doc.whenReady(function () {
-//   if (!doc.type) {
-//     doc.create('text');
-//   }
-//   if (doc.type && doc.type.name === 'text') {
-//     doc.attachCodeMirror(editor);
-//   }
-// });
+function LoadDoc(){
+  
        
+document.getElementById('filename').innerHTML = globalfilename;
 
 
        var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
-       if (xhttp.readyState == 4 && xhttp.status == 200) {
-        alert("inisde");
-         //var r=searchStringInArray(filename);
-       /* if(r!=-1){
-          alert("inside");
-          
-          doc.del();
-          alert(subscribedfiles[r]);
-          subscribedfiles[r]="e";
-
-        }
-         editor.setValue(xhttp.responseText);
-         //setEditor();
-
-         
-         subscribedfiles[length++]=filename;
-         alert(subscribedfiles.length);
-         */
+        
+     if (xhttp.readyState == 4 && xhttp.status == 200) {
+        
           if(counter>0)
          {
-          editor.detachShareJsDoc()
+
+          editor.detachShareJsDoc;
             //doc.detachShareJsDoc();
          //   //doc.destroy();
           }
-         
-          doc = sjs.get(user,filename);
+          doc = sjs.get(user,globalfilename);
 doc.subscribe();
 doc.whenReady(function () {
   if (!doc.type) {
@@ -340,105 +56,37 @@ doc.whenReady(function () {
           
       
   }
-    };
- 
+  
+ };
+var user=username[1];
+var ret=searchJSONArray(globalfilename);
 
-var user=document.getElementById('user').textContent;
-var ret=searchJSONArray(filename);
-alert("Currwent user"+user+ret);
-if(ret!=-1)
-user=sharedjson[ret].Group;
+ if(ret!=-1)
+ user=sharedjson[ret].Group;
 
-//var compiler=document.getElementById('compiler').value;
+
   
   xhttp.open("POST", "/loaddoc", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xhttp.send("filename="+filename+"&user="+user)
-alert(filename+user);
+xhttp.send("filename="+globalfilename+"&user="+user);
+
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
       }
-                  
-                 
-
-            </script> 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Components</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a class="active" href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
-                      </a>
-                      <ul class="sub">
-                          <li class="active"><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
-                      </ul>
-                  </li>
-
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
+</script>
+     
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-            <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+            <h3><i class="fa fa-angle-right"id="filename"></i> </h3>
+             
             <div class="row mt">
               <div class="col-lg-12">
               
-<script src="lib/codemirror.js"></script>
-<link rel="stylesheet" href="/codemirror.css">
+              
 
-<script src="/channel/bcsocket.js"></script>
-<script src="/share.js"></script>
-<script src="/share-codemirror.js"></script>
-<script src="../offline/offline.js"></script>
-
-<link rel="stylesheet" href="../offline//themes/offline-theme-chrome.css" />
-<link rel="stylesheet" href="../offline/themes/offline-language-english.css" />
 
 <script>
 // var run = function(){
@@ -465,6 +113,8 @@ function NewFile() {
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
+
+      notif("New File Created Sucesfully");
      /* if(xhttp.responseText=="sucess")
         {
 alert("sucess"):
@@ -476,12 +126,12 @@ alert("sucess"):
     }
   };
   xhttp.open("POST", "/newfile", true);
+  var filename=document.getElementById("fname").value;
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var user=document.getElementById('user').textContent;
-var filename=document.getElementById('fname').value;
 
-xhttp.send("username="+user+"&filename="+filename);
-alert(filename+user);
+
+xhttp.send("username="+username[1]+"&filename="+filename);
+
 }
 </script>
 <form name="myform">
@@ -491,8 +141,7 @@ alert(filename+user);
 
     <label id="user"></label>
     <script type="text/javascript">
-    var counter=0;
-    var sharedjson=[];
+    
  function searchJSONArray (str) {
     for (var j=0; j<sharedjson.length; j++) {
         if (sharedjson[j].filename.match(str)) return j;
@@ -537,8 +186,7 @@ alert(filename+user);
 // xhttp.send("username="+username[1]);
 
     </script>
-   
-       <link rel="stylesheet" href="theme/3024-day.css">
+     <link rel="stylesheet" href="theme/3024-day.css">
 <link rel="stylesheet" href="theme/3024-night.css">
 <link rel="stylesheet" href="theme/abcdef.css">
 <link rel="stylesheet" href="theme/ambiance.css">
@@ -721,7 +369,7 @@ alert(filename+user);
     var theme = input.options[input.selectedIndex].textContent;
     editor.setOption("theme", theme);
     inputeditor.setOption("theme",theme);
-    location.hash = "#" + theme;
+   // location.hash = "#" + theme;
   }
   var choice = (location.hash && location.hash.slice(1)) ||
                (document.location.search &&
@@ -742,11 +390,11 @@ alert(filename+user);
      
 //var foldername=filename.split(".");
 
-// if(user=="suraj")
-// { doc = sjs.get('suraj', "hello");
+// if(user=="nis")
+// { doc = sjs.get('nis', "hello");
 // }
 // else
-//  doc = sjs.get("suraj","hai");
+//  doc = sjs.get("nis","hai");
 // doc.subscribe();
 // doc.whenReady(function () {
 //   if (!doc.type) {
@@ -756,7 +404,9 @@ alert(filename+user);
 //     doc.attachCodeMirror(editor);
 //   }
 // });
-       
+       selectTheme();
+       LoadDoc();
+
     var subscribedfiles=[];
 
     function searchStringInArray (str) {
@@ -770,17 +420,18 @@ alert(filename+user);
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-    alert("here");  
+
 LoadDoc();
+notif("File is reverted ");
           
         
     }
   };
   xhttp.open("POST", "/revert", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-var user=document.getElementById('user').textContent;
-var filename=document.getElementById('filename').value;
-alert(filename);
+var user=username[1];
+var filename=globalfilename;
+
 
 var filenamemode=document.getElementById('commitname');
 var commitinfo = filenamemode.options[filenamemode.selectedIndex].value;
@@ -795,16 +446,16 @@ function Commit(){
         var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      console.log("Saved");
+      notif("Commited");
     }
   };
   xhttp.open("POST", "/commit", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
-var filename=document.getElementById('filename').value;
+var filename=globalfilename;
 
 
-var user=document.getElementById('user').textContent;
+var user=username[1];
 
   xhttp.send("filename="+filename+"&user="+user);
 }
@@ -829,29 +480,28 @@ var user=document.getElementById('user').textContent;
 
   xhttp.send("filename="+filename+"&user="+user);
 */
-alert("here");
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      alert(xhttp.responseText);
           var filenames=xhttp.responseText.split("\n");
 
           var master=document.commitform.commitname; 
 master.options.length = 0;
           for (i=0; i<filenames.length-1; i++){
     master.options[i]=new Option(filenames[i],filenames[i],false,false);
+
 }
           
-        
+      notif("File revert list loaded")  
     }
   };
   xhttp.open("POST", "/undo", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-var filename1=document.getElementById('filename').value;
+var filename1=globalfilename;
 
 
-var user=document.getElementById('user').textContent;
+var user=username[1];
 
   xhttp.send("filename="+filename1+"&user="+user);
 
@@ -864,7 +514,6 @@ var user=document.getElementById('user').textContent;
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      alert(xhttp.responseText);
           var filenames=xhttp.responseText.split("\n");
 
           var master=document.commitform.commitname; 
@@ -872,7 +521,7 @@ master.options.length = 0;
           for (i=0; i<filenames.length-1; i++){
     master.options[i]=new Option(filenames[i],filenames[i],false,false);
 }
-          
+     notif("File is shared");     
         
     }
   };
@@ -891,32 +540,31 @@ xhttp.send("user="+user+"&details="+text+"&filename="+filename1);
 
 }       
 function SaveDoc() {
+
   
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      console.log("Saved");
+      notif("File is saved");
     }
   };
   xhttp.open("POST", "/code", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
-var filename=document.getElementById('filename').value;
-var compiler;
 
+var filename=globalfilename;
 
-var user=document.getElementById('user').textContent;
+var user=username[1];
 var code=editor.getValue();
 code= encodeURIComponent(code);
 
-  xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&code="+code);
+  xhttp.send("filename="+filename+"&user="+user+"&code="+code);
 }
 function CompileExecute(){
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
       document.getElementById("demo").innerHTML = xhttp.responseText;
-      inputeditor.setValue(xhttp.responseText);
     }
   };
   
@@ -931,58 +579,20 @@ else if(mode=="text/x-python")
   xhttp.open("POST", "/compileandexecute", true);
 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  //xhttp.setRequestHeader("Content-type", "/compileandexecute");
-var filename=document.getElementById('filename').value;
+var filename=globalfilename;
+
 //var compiler=document.getElementById('compiler').value;
 var user=document.getElementById('user').textContent;
 var input=document.getElementById('input').value;
 input=encodeURIComponent(input);
+
   xhttp.send("filename="+filename+"&compiler="+compiler+"&user="+user+"&input="+input);
 }
 console.log("hi");
            
       
     </script>
-
-<script>
-/*var elem = document.getElementById('editor');
-var cm = CodeMirror.fromTextArea(elem, {
-  mode: "text/plain"
-});
-
-*/
-// function monkeyType() {
-//   var textLength = cm.getValue().length;
-//   var pos = Math.floor(Math.random()*textLength);
-//   var from = cm.posFromIndex(pos);
-//   var editLength = randomInt(10)
-//   if(Math.random() < 0.9) {
-//     // Add text
-//     var text =  randomString(editLength);
-//     cm.replaceRange(text, cm.posFromIndex(pos));
-//   } else {
-//     var endIndex = Math.max(pos + editLength, textLength-1);
-//     var to = cm.posFromIndex(endIndex);
-//     cm.replaceRange('', from, to);
-//   }
-// }
-
-// function randomString(len) {
-//   var chars = "0123456789\nABCDEF\nGHIJKLM\nNOPQRSTUVWXTZ\nabcde\nfghiklmnop\nqrstuvwxyz";
-//   var result = '';
-//   for (var i=0; i<len; i++) {
-//     var rnum = randomInt(chars.length);
-//     result += chars.substring(rnum, rnum+1);
-//   }
-//   return result;
-// }
-
-// function randomInt(max) {
-//   return Math.floor(Math.random()*max);
-// }
-
-
-</script>
-Filename: <input type="text" id="fname"><br>
+    Filename: <input type="text" id="fname"><br>
 <button type="button" onclick="NewFile()">New </button>
 <form name="commitform">
   <select name="commit"id="commitname"onchange="CommitName()">
@@ -1006,17 +616,14 @@ Filename: <input type="text" id="fname"><br>
       </footer>
       <!--footer end-->
   </section>
-
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
+  <!-- js placed at the end of the document so the pages load faster -->
+    
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-
-
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
